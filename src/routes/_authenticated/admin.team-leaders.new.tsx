@@ -68,7 +68,7 @@ function Content() {
   const [fullName, setFullName] = useState("");
   const [mobile, setMobile] = useState("");
   const [password, setPassword] = useState("");
-  const [teamId, setTeamId] = useState<string>("");
+  const [teamId, setTeamId] = useState<string>("new");
   const [teamName, setTeamName] = useState("");
   const [email, setEmail] = useState("");
   const [address, setAddress] = useState("");
@@ -215,15 +215,6 @@ function Content() {
         </div>
       )}
 
-      {availableTeams.length === 0 && !capReached && (
-        <div className="mb-6 flex items-start gap-3 rounded-3xl border border-amber-500/40 bg-amber-500/10 p-4 text-sm text-amber-900">
-          <AlertTriangle size={18} className="mt-0.5 flex-shrink-0" />
-          <div>
-            <div className="font-bold">No unassigned teams</div>
-            <div className="text-xs">Every existing team already has a leader.</div>
-          </div>
-        </div>
-      )}
 
       <form onSubmit={handleSubmit} className="grid gap-6 lg:grid-cols-3">
         <section className="glass-card rounded-4xl p-6 shadow-[var(--shadow-soft)] lg:col-span-2">
@@ -322,11 +313,6 @@ function Content() {
             </div>
           )}
 
-          {!teamsLoading && availableTeams.length === 0 && !capReached && (
-            <div className="rounded-2xl border border-amber-500/40 bg-amber-500/10 p-3 text-xs font-semibold text-amber-900">
-              No unassigned team slots are available. Refresh the list or release a team before creating another leader.
-            </div>
-          )}
 
           <button
             type="submit"

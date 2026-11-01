@@ -100,7 +100,7 @@ function Content() {
     });
   }, [data, q, status]);
 
-  const cap = limits?.maxTeamLeaders ?? 3;
+  const cap = limits?.maxTeamLeaders ?? Number.POSITIVE_INFINITY;
   const current = limits?.currentTeamLeaders ?? data?.leaders.length ?? 0;
   const canAdd = current < cap;
 
@@ -145,7 +145,7 @@ function Content() {
       </section>
 
       <section className="mb-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
-        <MiniStat label="Team Leaders" value={`${current}/${cap}`} icon={<UserCog size={14} />} />
+        <MiniStat label="Team Leaders" value={Number.isFinite(cap) ? `${current}/${cap}` : String(current)} icon={<UserCog size={14} />} />
         <MiniStat
           label="Total Members"
           value={String(

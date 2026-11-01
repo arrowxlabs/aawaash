@@ -79,7 +79,7 @@ function Content() {
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<{ loginId: string; teamLetter: string } | null>(null);
 
-  const cap = limits?.maxTeamLeaders ?? 3;
+  const cap = limits?.maxTeamLeaders ?? Number.POSITIVE_INFINITY;
   const current = limits?.currentTeamLeaders ?? 0;
   const capReached = current >= cap;
   const teamsLoading = leadersQuery.isLoading || leadersQuery.isFetching || limitsQuery.isLoading || limitsQuery.isFetching;
@@ -196,7 +196,7 @@ function Content() {
         <div>
           <div className="glass-card inline-flex items-center gap-2 rounded-full px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-foreground">
             <Sparkles size={12} className="text-gold" />
-            {current}/{cap} Team Leaders
+            {current} Team Leaders · Unlimited
           </div>
           <h1 className="mt-2 text-3xl font-extrabold text-foreground">Add a Team Leader</h1>
           <p className="mt-1 text-sm text-muted-foreground">
@@ -285,7 +285,7 @@ function Content() {
               Team assignment
             </h3>
             <p className="mt-1 text-xs text-muted-foreground">
-              Each leader owns exactly one team. Team letter is fixed.
+              Each leader owns one numbered team. Choose “Create new team” to add Team N.
             </p>
           </div>
           <label className="block text-sm">

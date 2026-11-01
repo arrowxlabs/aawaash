@@ -243,7 +243,7 @@ function AdminContent() {
           <div className="mb-3 flex items-center justify-between gap-3">
             <div>
               <h2 className="text-xl font-extrabold text-foreground">Team leader slots</h2>
-              <p className="text-xs text-muted-foreground">Three direct leader boxes with name, login ID/mobile and password creation.</p>
+              <p className="text-xs text-muted-foreground">Unlimited leaders — every team is numbered (Team 1, Team 2 …). Fill the open slot to add another.</p>
             </div>
             <div className="flex items-center gap-2">
               <button

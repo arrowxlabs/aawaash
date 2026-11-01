@@ -301,6 +301,7 @@ function Content() {
               className="mt-1 block w-full rounded-2xl border border-border bg-surface px-3 py-2.5 text-sm font-semibold text-foreground outline-none focus:border-primary disabled:cursor-wait disabled:opacity-60"
             >
               <option value="">{teamsLoading ? "Refreshing teams…" : "— Choose a team —"}</option>
+              <option value="new">+ Create new team (next number)</option>
               {availableTeams.map((t) => (
                 <option key={t.id} value={t.id}>
                   Team {t.letter} · {t.name}

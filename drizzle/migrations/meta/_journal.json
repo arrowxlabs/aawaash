@@ -15,6 +15,13 @@
       "when": 1791581884885,
       "tag": "0001_unlimited_team_codes",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1793568165688,
+      "tag": "0002_numbered_teams",
+      "breakpoints": true
     }
   ]
 }

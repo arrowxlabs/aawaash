@@ -3,10 +3,12 @@
  *
  * - Team Leaders are unlimited: every new leader gets their own team.
  * - Members per team are unlimited.
- * - Team codes run A…Z, then AA…ZZ, then AAA…ZZZ (17,576 teams).
+ * - Teams are numbered: Team 1, Team 2, Team 3 … (stored as "1", "2", …).
+ * - Legacy letter codes (A–ZZZ) are still accepted for old login IDs.
  */
 
-export const TEAM_CODE_PATTERN = /^[A-Z]{1,3}$/;
+export const TEAM_NUMBER_PATTERN = /^[1-9]\d{0,4}$/;
+export const TEAM_CODE_PATTERN = /^([1-9]\d{0,4}|[A-Z]{1,3})$/;
 
 export function isValidTeamCode(code: string) {
   return TEAM_CODE_PATTERN.test(code);
@@ -22,33 +24,28 @@ export function canAssignMemberToTeam(hasTeamLeader: boolean) {
 }
 
 function codeToIndex(code: string) {
-  // Bijective base-26: A=1 … Z=26, AA=27 …
+  if (TEAM_NUMBER_PATTERN.test(code)) return Number(code);
+  // Legacy letters sort after numbered teams.
   let n = 0;
   for (const ch of code) n = n * 26 + (ch.charCodeAt(0) - 64);
-  return n;
+  return 1_000_000 + n;
 }
 
-function indexToCode(n: number) {
-  let s = "";
-  while (n > 0) {
-    const r = (n - 1) % 26;
-    s = String.fromCharCode(65 + r) + s;
-    n = Math.floor((n - 1) / 26);
-  }
-  return s;
-}
-
-/** Returns the first unused team code in A, B, … Z, AA, AB … order. */
+/** Returns the lowest unused team number as a string ("1", "2", …). */
 export function nextTeamCode(existing: string[]) {
-  const used = new Set(existing.filter(isValidTeamCode).map(codeToIndex));
+  const used = new Set(existing.filter((c) => TEAM_NUMBER_PATTERN.test(c)).map(Number));
   let i = 1;
   while (used.has(i)) i++;
-  const code = indexToCode(i);
-  if (!isValidTeamCode(code)) throw new Error("No team codes left");
-  return code;
+  if (i > 99999) throw new Error("No team numbers left");
+  return String(i);
 }
 
-/** Sort team codes A, B … Z, AA … instead of alphabetical (A, AA, B). */
+/** Sort numerically: 1, 2 … 10 (not 1, 10, 2). */
 export function compareTeamCodes(a: string, b: string) {
   return codeToIndex(a) - codeToIndex(b);
+}
+
+/** Human label, e.g. "Team 4". */
+export function teamLabel(code: string | null | undefined) {
+  return code ? `Team ${code}` : "Unassigned";
 }

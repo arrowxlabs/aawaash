@@ -62,7 +62,7 @@ const teamLeaderSchema = z.object({
   fullName: z.string().trim().min(2).max(80),
   mobile: z.string().regex(/^\d{10}$/, "Mobile must be exactly 10 digits"),
   password: z.string().min(8).max(72),
-  teamLetter: z.string().regex(/^[A-Z]$/, "Team letter must be A–Z"),
+  teamLetter: z.string().regex(/^([1-9]\d{0,4}|[A-Z]{1,3})$/, "Team number must be 1 or higher"),
 });
 
 export const createTeamLeader = createServerFn({ method: "POST" })
@@ -146,7 +146,7 @@ const memberSchema = z.object({
   fullName: z.string().trim().min(2).max(80),
   mobile: z.string().regex(/^\d{10}$/, "Mobile must be exactly 10 digits"),
   password: z.string().min(8).max(72),
-  teamLetter: z.string().regex(/^[A-Z]$/, "Team letter must be A–Z"),
+  teamLetter: z.string().regex(/^([1-9]\d{0,4}|[A-Z]{1,3})$/, "Team number must be 1 or higher"),
 });
 
 export const createMember = createServerFn({ method: "POST" })

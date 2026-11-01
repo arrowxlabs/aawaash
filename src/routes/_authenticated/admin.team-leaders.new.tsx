@@ -68,7 +68,7 @@ function Content() {
   const [fullName, setFullName] = useState("");
   const [mobile, setMobile] = useState("");
   const [password, setPassword] = useState("");
-  const [teamId, setTeamId] = useState<string>("");
+  const [teamId, setTeamId] = useState<string>("new");
   const [teamName, setTeamName] = useState("");
   const [email, setEmail] = useState("");
   const [address, setAddress] = useState("");
@@ -79,7 +79,7 @@ function Content() {
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<{ loginId: string; teamLetter: string } | null>(null);
 
-  const cap = limits?.maxTeamLeaders ?? 3;
+  const cap = limits?.maxTeamLeaders ?? Number.POSITIVE_INFINITY;
   const current = limits?.currentTeamLeaders ?? 0;
   const capReached = current >= cap;
   const teamsLoading = leadersQuery.isLoading || leadersQuery.isFetching || limitsQuery.isLoading || limitsQuery.isFetching;
@@ -120,7 +120,7 @@ function Content() {
         qc.invalidateQueries({ queryKey: ["admin", "overview"] }),
       ]);
       await Promise.all([leadersQuery.refetch(), limitsQuery.refetch()]);
-      toast.success(`Team Leader ${res.teamLetter} created`);
+      toast.success(`Team Leader created for Team ${res.teamLetter}`);
       setSuccess({ loginId: res.loginId, teamLetter: res.teamLetter });
     } catch (err) {
       const msg = err instanceof Error ? err.message : "Failed to create Team Leader";
@@ -196,7 +196,7 @@ function Content() {
         <div>
           <div className="glass-card inline-flex items-center gap-2 rounded-full px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-foreground">
             <Sparkles size={12} className="text-gold" />
-            {current}/{cap} Team Leaders
+            {current} Team Leaders · Unlimited
           </div>
           <h1 className="mt-2 text-3xl font-extrabold text-foreground">Add a Team Leader</h1>
           <p className="mt-1 text-sm text-muted-foreground">
@@ -215,15 +215,6 @@ function Content() {
         </div>
       )}
 
-      {availableTeams.length === 0 && !capReached && (
-        <div className="mb-6 flex items-start gap-3 rounded-3xl border border-amber-500/40 bg-amber-500/10 p-4 text-sm text-amber-900">
-          <AlertTriangle size={18} className="mt-0.5 flex-shrink-0" />
-          <div>
-            <div className="font-bold">No unassigned teams</div>
-            <div className="text-xs">Every existing team already has a leader.</div>
-          </div>
-        </div>
-      )}
 
       <form onSubmit={handleSubmit} className="grid gap-6 lg:grid-cols-3">
         <section className="glass-card rounded-4xl p-6 shadow-[var(--shadow-soft)] lg:col-span-2">
@@ -285,7 +276,7 @@ function Content() {
               Team assignment
             </h3>
             <p className="mt-1 text-xs text-muted-foreground">
-              Each leader owns exactly one team. Team letter is fixed.
+              Each leader owns one numbered team. Choose “Create new team” to add Team N.
             </p>
           </div>
           <label className="block text-sm">
@@ -301,6 +292,7 @@ function Content() {
               className="mt-1 block w-full rounded-2xl border border-border bg-surface px-3 py-2.5 text-sm font-semibold text-foreground outline-none focus:border-primary disabled:cursor-wait disabled:opacity-60"
             >
               <option value="">{teamsLoading ? "Refreshing teams…" : "— Choose a team —"}</option>
+              <option value="new">+ Create new team (next number)</option>
               {availableTeams.map((t) => (
                 <option key={t.id} value={t.id}>
                   Team {t.letter} · {t.name}
@@ -321,11 +313,6 @@ function Content() {
             </div>
           )}
 
-          {!teamsLoading && availableTeams.length === 0 && !capReached && (
-            <div className="rounded-2xl border border-amber-500/40 bg-amber-500/10 p-3 text-xs font-semibold text-amber-900">
-              No unassigned team slots are available. Refresh the list or release a team before creating another leader.
-            </div>
-          )}
 
           <button
             type="submit"

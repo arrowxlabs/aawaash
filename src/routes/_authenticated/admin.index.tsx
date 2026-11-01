@@ -26,6 +26,7 @@ import {
   Wallet,
 } from "lucide-react";
 import { useSession } from "@/hooks/useSession";
+import { compareTeamCodes, nextTeamCode } from "@/lib/team-policy";
 import { RoleGuard } from "@/components/aawash/AuthGuard";
 import { AdminShell } from "@/components/aawash/admin/AdminShell";
 import { getAdminOverview } from "@/lib/admin-overview.functions";
@@ -114,17 +115,23 @@ function AdminContent() {
   const projectRows = (projects.data ?? []).slice(0, 5);
   const teamRows = useMemo(() => {
     const rows = leaders.data?.leaders ?? [];
-    const teams = (leaders.data?.teams ?? []).filter((team) => !team.is_deleted);
-    const slots = ["A", "B", "C"].map((letter) => {
-      const team = teams.find((t) => t.letter === letter) ?? teams.find((t) => !rows.some((l) => l.team_id === t.id));
-      const leader = rows.find((l) => l.team_letter === letter) ?? (team ? rows.find((l) => l.team_id === team.id) : undefined);
-      const occupiedLeaderId = team?.leader_id && !leader ? team.leader_id : null;
-      return { letter, team, leader, occupiedLeaderId };
+    const teams = (leaders.data?.teams ?? [])
+      .filter((team) => !team.is_deleted)
+      .sort((a, b) => compareTeamCodes(a.letter, b.letter));
+    const slots: Array<{ letter: string; team?: (typeof teams)[number] | { id: string; name: string }; leader?: (typeof rows)[number]; occupiedLeaderId: string | null }> = teams.map((team) => {
+      const leader = rows.find((l) => l.team_id === team.id);
+      const occupiedLeaderId = team.leader_id && !leader ? team.leader_id : null;
+      return { letter: team.letter, team, leader, occupiedLeaderId };
     });
+    // Always offer one fresh slot so admins can keep adding leaders.
+    if (!slots.some((s) => !s.leader && !s.occupiedLeaderId)) {
+      const next = nextTeamCode(teams.map((t) => t.letter));
+      slots.push({ letter: next, team: { id: "new", name: `Team ${next}` }, occupiedLeaderId: null });
+    }
     return slots;
   }, [leaders.data]);
   const currentLeaderCount = leaders.data?.leaders.length ?? limits.data?.currentTeamLeaders ?? 0;
-  const maxTeamLeaders = limits.data?.maxTeamLeaders ?? 3;
+  const maxTeamLeaders = limits.data?.maxTeamLeaders ?? Number.POSITIVE_INFINITY;
   const teamDataLoading = leaders.isLoading || leaders.isFetching || limits.isLoading || limits.isFetching;
   const teamDataError = leaders.error ?? limits.error;
 
@@ -236,7 +243,7 @@ function AdminContent() {
           <div className="mb-3 flex items-center justify-between gap-3">
             <div>
               <h2 className="text-xl font-extrabold text-foreground">Team leader slots</h2>
-              <p className="text-xs text-muted-foreground">Three direct leader boxes with name, login ID/mobile and password creation.</p>
+              <p className="text-xs text-muted-foreground">Unlimited leaders — every team is numbered (Team 1, Team 2 …). Fill the open slot to add another.</p>
             </div>
             <div className="flex items-center gap-2">
               <button

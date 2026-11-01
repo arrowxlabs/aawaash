@@ -3,7 +3,8 @@
  * ---------------------------------------------------------
  * - Login IDs are the user-facing credential:
  *     Super Admin / Team Leader → 10-digit mobile (e.g. 9876543210)
- *     Member                    → TeamLetter + 10-digit mobile (e.g. A9876543210)
+ *     Member                    → Team number + 10-digit mobile (e.g. 49876543210 for Team 4)
+ *     (legacy letter IDs such as A9876543210 still sign in)
  * - Supabase Auth requires an email, so we deterministically synthesize
  *   an internal email per user. Users never see this address.
  */
@@ -22,13 +23,16 @@ export function validateLoginId(input: string): {
   // Team Leader / Super Admin: 10 digits only
   if (/^\d{10}$/.test(trimmed)) return { ok: true, normalized: trimmed };
 
-  // Member: single team letter + 10 digits
-  if (/^[A-Z]\d{10}$/.test(trimmed)) return { ok: true, normalized: trimmed };
+  // Member: team number (1–99999) + 10 digits
+  if (/^[1-9]\d{10,14}$/.test(trimmed)) return { ok: true, normalized: trimmed };
+
+  // Legacy member IDs: team letters + 10 digits
+  if (/^[A-Z]{1,3}\d{10}$/.test(trimmed)) return { ok: true, normalized: trimmed };
 
   return {
     ok: false,
     normalized: trimmed,
-    reason: "Enter a valid Login ID (mobile, or TeamLetter+mobile)",
+    reason: "Enter a valid Login ID (mobile, or Team number + mobile)",
   };
 }
 

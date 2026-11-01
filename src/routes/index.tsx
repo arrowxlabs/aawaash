@@ -1632,7 +1632,7 @@ const FAQS = [
   },
   {
     q: "What is my Login ID?",
-    a: "Team Leaders and Super Admins sign in with their 10-digit mobile number. Members sign in with their Team Letter followed by their mobile — e.g. A9876543210.",
+    a: "Team Leaders and Super Admins sign in with their 10-digit mobile number. Members sign in with their Team number followed by their mobile — e.g. 19876543210 for Team 1.",
   },
   {
     q: "How is commission calculated?",

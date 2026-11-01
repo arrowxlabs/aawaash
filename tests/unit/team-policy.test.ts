@@ -21,25 +21,26 @@ describe("team policy", () => {
     expect(canAssignMemberToTeam(false)).toBe(false);
   });
 
-  it("gives the fourth team code D after A, B, C", () => {
-    expect(nextTeamCode(["A", "B", "C"])).toBe("D");
+  it("numbers the fourth team 4 after 1, 2, 3", () => {
+    expect(nextTeamCode(["1", "2", "3"])).toBe("4");
   });
 
-  it("continues with AA after Z", () => {
-    const all = Array.from({ length: 26 }, (_, i) => String.fromCharCode(65 + i));
-    expect(nextTeamCode(all)).toBe("AA");
+  it("supports 50+ numbered teams", () => {
+    const all = Array.from({ length: 60 }, (_, i) => String(i + 1));
+    expect(nextTeamCode(all)).toBe("61");
   });
 
-  it("reuses the first free gap", () => {
-    expect(nextTeamCode(["A", "C"])).toBe("B");
+  it("reuses the first free number", () => {
+    expect(nextTeamCode(["1", "3"])).toBe("2");
   });
 
-  it("accepts multi-letter team codes up to three letters", () => {
-    expect(isValidTeamCode("AB")).toBe(true);
-    expect(isValidTeamCode("ABCD")).toBe(false);
+  it("accepts numbered and legacy letter codes", () => {
+    expect(isValidTeamCode("57")).toBe(true);
+    expect(isValidTeamCode("0")).toBe(false);
+    expect(isValidTeamCode("A")).toBe(true);
   });
 
-  it("sorts Z before AA", () => {
-    expect(["AA", "Z", "B"].sort(compareTeamCodes)).toEqual(["B", "Z", "AA"]);
+  it("sorts numerically", () => {
+    expect(["10", "2", "1"].sort(compareTeamCodes)).toEqual(["1", "2", "10"]);
   });
 });

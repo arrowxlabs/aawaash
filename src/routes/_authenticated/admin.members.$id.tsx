@@ -702,7 +702,7 @@ function Content() {
             </select>
           </FieldRow>
           <p className="mt-2 text-[11px] text-muted-foreground">
-            Login ID will automatically regenerate as TeamLetter + mobile.
+            Login ID will automatically regenerate as Team number + mobile.
           </p>
           <div className="mt-5 flex justify-end gap-2">
             <button

@@ -116,7 +116,7 @@ function TeamLeadersTab() {
       <div className="rounded-4xl border border-border bg-surface p-6 shadow-[var(--shadow-soft)]">
         <h2 className="text-lg font-bold text-foreground">Team ownership</h2>
         <p className="mt-1 text-xs text-muted-foreground">
-          Each team can have exactly one Team Leader. The Team Letter becomes
+          Each team can have exactly one Team Leader. The Team number becomes
           the parent identifier for every Member on that team.
         </p>
         <ul className="mt-5 grid gap-3">
@@ -374,7 +374,7 @@ function CreateMemberCard({ teams }: { teams: TeamWithLeader[] }) {
         <div>
           <h2 className="text-lg font-bold text-foreground">Create Member</h2>
           <p className="text-[11px] text-muted-foreground">
-            Login ID = Team letter + 10-digit mobile. Generated automatically.
+            Login ID = Team number + 10-digit mobile. Generated automatically.
           </p>
         </div>
       </div>

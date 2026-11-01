@@ -120,7 +120,7 @@ function Content() {
         qc.invalidateQueries({ queryKey: ["admin", "overview"] }),
       ]);
       await Promise.all([leadersQuery.refetch(), limitsQuery.refetch()]);
-      toast.success(`Team Leader ${res.teamLetter} created`);
+      toast.success(`Team Leader created for Team ${res.teamLetter}`);
       setSuccess({ loginId: res.loginId, teamLetter: res.teamLetter });
     } catch (err) {
       const msg = err instanceof Error ? err.message : "Failed to create Team Leader";

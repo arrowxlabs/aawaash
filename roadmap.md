@@ -14,7 +14,8 @@
 - [x] Replace placeholder/public inventory reads with authenticated project-ID reads, including draft projects.
 - [ ] Verify floor creation and flat creation end to end; blocked until an admin signs in to the preview.
 - [x] Add tower layout description/text upload and structured AI review without automatic inventory writes.
-- [ ] Resolve request for unlimited Team Leaders against the mandatory three-leader project rule; cap remains three.
+- [x] Unlimited Team Leaders with numbered teams (Team 1, 2, 3 …).
 - [x] Apply white and Payne's Gray across public pages, dashboards, and admin; verify public rendering and persisted CMS colors.
 - [x] Review tower layouts for missing floors, duplicate flat numbers, and inconsistent unit counts using AI Gateway; live request and unit tests passed.
 - [x] Replace Payne's Gray with white and dark Fern green across all theme scopes and saved brand colors; public pages verified without errors.
+- [x] Apply white, dark matte plum and dark olive green theme.

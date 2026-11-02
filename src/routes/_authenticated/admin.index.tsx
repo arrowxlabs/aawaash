@@ -30,7 +30,7 @@ import { RoleGuard } from "@/components/aawash/AuthGuard";
 import { AdminShell } from "@/components/aawash/admin/AdminShell";
 import { getAdminOverview } from "@/lib/admin-overview.functions";
 import { adminListProjects } from "@/lib/project-admin.functions";
-import { listTeamLeaders, createTeamLeaderFull, getTeamLimits } from "@/lib/team-leaders.functions";
+import { listTeamLeaders, createTeamLeaderFull } from "@/lib/team-leaders.functions";
 import { listAllMembers, createMemberFull } from "@/lib/members-admin.functions";
 import { getSystemHealth } from "@/lib/system.functions";
 import { formatINR, initials } from "@/components/aawash/dashboard-kit";

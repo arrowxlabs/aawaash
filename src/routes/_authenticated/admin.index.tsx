@@ -26,7 +26,6 @@ import {
   Wallet,
 } from "lucide-react";
 import { useSession } from "@/hooks/useSession";
-import { compareTeamCodes, nextTeamCode } from "@/lib/team-policy";
 import { RoleGuard } from "@/components/aawash/AuthGuard";
 import { AdminShell } from "@/components/aawash/admin/AdminShell";
 import { getAdminOverview } from "@/lib/admin-overview.functions";

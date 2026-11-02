@@ -1,20 +1,20 @@
-import { useEffect, useMemo, useState } from "react";
+import { useState } from "react";
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
-import { ArrowLeft, UserPlus, CheckCircle2, Loader2, Sparkles, AlertTriangle } from "lucide-react";
+import { ArrowLeft, UserPlus, CheckCircle2, Loader2, Sparkles } from "lucide-react";
 import { useSession } from "@/hooks/useSession";
 import { RoleGuard } from "@/components/aawash/AuthGuard";
 import { AdminShell } from "@/components/aawash/admin/AdminShell";
-import { listTeamLeaders, createTeamLeaderFull, getTeamLimits } from "@/lib/team-leaders.functions";
+import { createTeamLeaderFull } from "@/lib/team-leaders.functions";
 
 export const Route = createFileRoute("/_authenticated/admin/team-leaders/new")({
   component: Page,
   head: () => ({
     meta: [
       { title: "New Team Leader — Aawash Admin" },
-      { name: "description", content: "Create a new Aawash team leader account with refreshed team slot availability and admin-only controls." },
+      { name: "description", content: "Create a new Aawash team leader account — each leader automatically gets their own numbered team." },
       { property: "og:title", content: "New Team Leader — Aawash Admin" },
       { property: "og:description", content: "Private admin page for creating Aawash team leader accounts." },
       { property: "og:type", content: "website" },
@@ -36,39 +36,10 @@ function Content() {
   const navigate = useNavigate();
   const qc = useQueryClient();
   const createFn = useServerFn(createTeamLeaderFull);
-  const listFn = useServerFn(listTeamLeaders);
-  const limitsFn = useServerFn(getTeamLimits);
-
-  const leadersQuery = useQuery({
-    queryKey: ["admin", "team-leaders"],
-    queryFn: () => listFn(),
-    staleTime: 0,
-    refetchOnMount: "always",
-    refetchOnWindowFocus: true,
-  });
-  const limitsQuery = useQuery({
-    queryKey: ["admin", "team-limits"],
-    queryFn: () => limitsFn(),
-    staleTime: 0,
-    refetchOnMount: "always",
-    refetchOnWindowFocus: true,
-  });
-  const { data } = leadersQuery;
-  const { data: limits } = limitsQuery;
-
-  useEffect(() => {
-    void Promise.all([leadersQuery.refetch(), limitsQuery.refetch()]);
-  }, []);
-
-  const availableTeams = useMemo(
-    () => (data?.teams ?? []).filter((t) => !t.leader_id && !t.is_deleted),
-    [data],
-  );
 
   const [fullName, setFullName] = useState("");
   const [mobile, setMobile] = useState("");
   const [password, setPassword] = useState("");
-  const [teamId, setTeamId] = useState<string>("new");
   const [teamName, setTeamName] = useState("");
   const [email, setEmail] = useState("");
   const [address, setAddress] = useState("");
@@ -79,19 +50,11 @@ function Content() {
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<{ loginId: string; teamLetter: string } | null>(null);
 
-  const cap = limits?.maxTeamLeaders ?? Number.POSITIVE_INFINITY;
-  const current = limits?.currentTeamLeaders ?? 0;
-  const capReached = current >= cap;
-  const teamsLoading = leadersQuery.isLoading || leadersQuery.isFetching || limitsQuery.isLoading || limitsQuery.isFetching;
-
   const canSubmit =
     !submitting &&
-    !teamsLoading &&
-    !capReached &&
     fullName.trim().length >= 2 &&
     /^\d{10}$/.test(mobile) &&
-    password.length >= 8 &&
-    teamId.length > 0;
+    password.length >= 8;
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -104,7 +67,7 @@ function Content() {
           fullName: fullName.trim(),
           mobile: mobile.trim(),
           password,
-          teamId,
+          teamId: "new",
           teamName: teamName.trim() || undefined,
           email: email.trim(),
           address: address.trim(),
@@ -119,7 +82,6 @@ function Content() {
         qc.invalidateQueries({ queryKey: ["admin", "members"] }),
         qc.invalidateQueries({ queryKey: ["admin", "overview"] }),
       ]);
-      await Promise.all([leadersQuery.refetch(), limitsQuery.refetch()]);
       toast.success(`Team Leader created for Team ${res.teamLetter}`);
       setSuccess({ loginId: res.loginId, teamLetter: res.teamLetter });
     } catch (err) {
@@ -135,13 +97,13 @@ function Content() {
     return (
       <AdminShell profile={profile}>
         <div className="glass-card mx-auto mt-10 max-w-lg rounded-4xl p-8 text-center shadow-[var(--shadow-float)]">
-          <div className="mx-auto grid h-16 w-16 place-items-center rounded-2xl bg-emerald-500/15 text-emerald-600">
+          <div className="mx-auto grid h-16 w-16 place-items-center rounded-2xl bg-leaf/15 text-leaf">
             <CheckCircle2 size={32} />
           </div>
           <h2 className="mt-4 text-2xl font-extrabold text-foreground">Team Leader created</h2>
           <p className="mt-2 text-sm text-muted-foreground">
-            Team <span className="font-bold text-foreground">{success.teamLetter}</span> is now
-            active. Share these credentials securely.
+            Team <span className="font-bold text-foreground">{success.teamLetter}</span> was created
+            automatically and is now active. Share these credentials securely.
           </p>
           <div className="mt-5 rounded-2xl border border-border bg-surface p-4 text-left">
             <div className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
@@ -166,7 +128,6 @@ function Content() {
                 setFullName("");
                 setMobile("");
                 setPassword("");
-                setTeamId("");
                 setTeamName("");
                 setEmail("");
                 setAddress("");
@@ -196,25 +157,14 @@ function Content() {
         <div>
           <div className="glass-card inline-flex items-center gap-2 rounded-full px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-foreground">
             <Sparkles size={12} className="text-gold" />
-            {current} Team Leaders · Unlimited
+            Unlimited Team Leaders
           </div>
           <h1 className="mt-2 text-3xl font-extrabold text-foreground">Add a Team Leader</h1>
           <p className="mt-1 text-sm text-muted-foreground">
-            Create the leader profile, assign a team, and issue login credentials.
+            Every leader automatically gets a brand-new numbered team — no picking required.
           </p>
         </div>
       </div>
-
-      {capReached && (
-        <div className="mb-6 flex items-start gap-3 rounded-3xl border border-amber-500/40 bg-amber-500/10 p-4 text-sm text-amber-900">
-          <AlertTriangle size={18} className="mt-0.5 flex-shrink-0" />
-          <div>
-            <div className="font-bold">Team Leader cap reached ({cap})</div>
-            <div className="text-xs">Increase the limit from the Team Leaders list → Limits.</div>
-          </div>
-        </div>
-      )}
-
 
       <form onSubmit={handleSubmit} className="grid gap-6 lg:grid-cols-3">
         <section className="glass-card rounded-4xl p-6 shadow-[var(--shadow-soft)] lg:col-span-2">
@@ -273,38 +223,18 @@ function Content() {
         <aside className="glass-card flex flex-col gap-5 rounded-4xl p-6 shadow-[var(--shadow-soft)]">
           <div>
             <h3 className="text-sm font-bold uppercase tracking-wider text-muted-foreground">
-              Team assignment
+              Team
             </h3>
             <p className="mt-1 text-xs text-muted-foreground">
-              Each leader owns one numbered team. Choose “Create new team” to add Team N.
+              A new team (Team 4, Team 5 …) is created automatically for this leader — one leader,
+              one team. Members you add later join this team.
             </p>
           </div>
-          <label className="block text-sm">
-            <span className="text-xs font-semibold text-muted-foreground">Select team*</span>
-            <select
-              value={teamId}
-              disabled={teamsLoading}
-              onChange={(e) => {
-                setTeamId(e.target.value);
-                const t = availableTeams.find((t) => t.id === e.target.value);
-                if (t) setTeamName(t.name ?? "");
-              }}
-              className="mt-1 block w-full rounded-2xl border border-border bg-surface px-3 py-2.5 text-sm font-semibold text-foreground outline-none focus:border-primary disabled:cursor-wait disabled:opacity-60"
-            >
-              <option value="">{teamsLoading ? "Refreshing teams…" : "— Choose a team —"}</option>
-              <option value="new">+ Create new team (next number)</option>
-              {availableTeams.map((t) => (
-                <option key={t.id} value={t.id}>
-                  Team {t.letter} · {t.name}
-                </option>
-              ))}
-            </select>
-          </label>
           <Field
-            label="Team display name"
+            label="Team display name (optional)"
             value={teamName}
             onChange={setTeamName}
-            placeholder="Team display name"
+            placeholder="Leave empty to use the team number"
           />
 
           {error && (
@@ -312,7 +242,6 @@ function Content() {
               {error}
             </div>
           )}
-
 
           <button
             type="submit"

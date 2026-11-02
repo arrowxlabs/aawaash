@@ -69,7 +69,6 @@ function AdminContent() {
   const projectFn = useServerFn(adminListProjects);
   const leadersFn = useServerFn(listTeamLeaders);
   const membersFn = useServerFn(listAllMembers);
-  const limitsFn = useServerFn(getTeamLimits);
   const createLeaderFn = useServerFn(createTeamLeaderFull);
   const createMemberFn = useServerFn(createMemberFull);
 
@@ -86,12 +85,6 @@ function AdminContent() {
   const members = useQuery({
     queryKey: ["admin", "members"],
     queryFn: () => membersFn(),
-    staleTime: 0,
-    refetchOnMount: "always",
-  });
-  const limits = useQuery({
-    queryKey: ["admin", "team-limits"],
-    queryFn: () => limitsFn(),
     staleTime: 0,
     refetchOnMount: "always",
   });

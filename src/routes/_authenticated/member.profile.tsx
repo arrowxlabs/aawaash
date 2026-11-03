@@ -70,7 +70,7 @@ function ProfileContent() {
           {profile?.avatar_url ? (
             <img src={profile.avatar_url} alt="" className="h-16 w-16 rounded-3xl object-cover" />
           ) : (
-            <div className="grid h-16 w-16 place-items-center rounded-3xl bg-gradient-to-br from-primary to-leaf text-lg font-bold text-primary-foreground">
+            <div className="grid h-16 w-16 place-items-center rounded-3xl bg-primary text-lg font-bold text-primary-foreground">
               {initials(profile?.full_name)}
             </div>
           )}

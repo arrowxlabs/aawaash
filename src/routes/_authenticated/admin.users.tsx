@@ -567,7 +567,7 @@ function UserRow({ user }: { user: ListedUser }) {
     <li className="rounded-2xl border border-border bg-surface-warm px-4 py-3">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div className="flex min-w-0 items-center gap-3">
-          <div className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-gradient-to-br from-primary to-leaf text-xs font-bold text-primary-foreground">
+          <div className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-primary text-xs font-bold text-primary-foreground">
             {(user.full_name || user.login_id).slice(0, 2).toUpperCase()}
           </div>
           <div className="min-w-0">

@@ -346,7 +346,7 @@ function NewLeadContent() {
           <button
             type="submit"
             disabled={saving}
-            className="inline-flex h-11 items-center gap-1.5 rounded-2xl bg-gradient-to-br from-primary to-leaf px-5 text-sm font-semibold text-primary-foreground shadow-[var(--shadow-glow)] disabled:opacity-60"
+            className="inline-flex h-11 items-center gap-1.5 rounded-2xl bg-primary px-5 text-sm font-semibold text-primary-foreground shadow-[var(--shadow-glow)] disabled:opacity-60"
           >
             {saving ? <Check size={14} /> : <UserPlus size={14} />} {saving ? "Saving…" : "Create lead"}
           </button>

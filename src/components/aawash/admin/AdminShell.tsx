@@ -279,7 +279,7 @@ export function AdminShell({
               className="hidden items-center gap-2 rounded-2xl border border-border bg-surface px-3 py-1.5 shadow-[var(--shadow-soft)] transition-colors hover:border-primary/40 sm:flex"
               aria-label="Admin profile"
             >
-              <div className="grid h-8 w-8 place-items-center rounded-full bg-gradient-to-br from-primary to-leaf text-xs font-bold text-primary-foreground">
+              <div className="grid h-8 w-8 place-items-center rounded-full bg-primary text-xs font-bold text-primary-foreground">
                 {initials}
               </div>
               <div className="flex flex-col leading-tight">
@@ -325,7 +325,7 @@ function SidebarNav({ pathname, collapsed }: { pathname: string; collapsed: bool
                     to={item.to}
                     className={`group relative flex items-center gap-3 rounded-2xl px-3 py-2.5 text-sm font-semibold transition-all ${
                       active
-                        ? "bg-gradient-to-r from-primary to-leaf text-primary-foreground shadow-[var(--shadow-glow)]"
+                        ? "bg-primary text-primary-foreground shadow-[var(--shadow-glow)]"
                         : "text-muted-foreground hover:bg-primary-soft hover:text-foreground"
                     } ${collapsed ? "justify-center" : ""}`}
                     aria-current={active ? "page" : undefined}

@@ -248,7 +248,7 @@ function SaleDetailInner() {
                 type="button"
                 onClick={() => submitM.mutate()}
                 disabled={submitM.isPending}
-                className="inline-flex h-10 items-center gap-1.5 rounded-2xl bg-gradient-to-br from-primary to-leaf px-4 text-sm font-semibold text-primary-foreground shadow-[var(--shadow-glow)] disabled:opacity-50"
+                className="inline-flex h-10 items-center gap-1.5 rounded-2xl bg-primary px-4 text-sm font-semibold text-primary-foreground shadow-[var(--shadow-glow)] disabled:opacity-50"
               >
                 {submitM.isPending ? <Loader2 className="size-4 animate-spin" /> : <Send size={14} />}
                 Submit for approval

@@ -200,7 +200,7 @@ function ReferralsContent() {
             <button
               type="submit"
               disabled={submit.isPending}
-              className="inline-flex h-12 items-center justify-center gap-2 rounded-2xl bg-gradient-to-br from-primary to-leaf text-sm font-semibold text-primary-foreground shadow-[var(--shadow-glow)] disabled:opacity-50"
+              className="inline-flex h-12 items-center justify-center gap-2 rounded-2xl bg-primary text-sm font-semibold text-primary-foreground shadow-[var(--shadow-glow)] disabled:opacity-50"
             >
               <UserPlus size={14} /> {submit.isPending ? "Submitting…" : "Submit referral"}
             </button>

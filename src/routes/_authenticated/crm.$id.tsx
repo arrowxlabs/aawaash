@@ -198,7 +198,7 @@ function ProfileContent() {
         <div className="grid gap-5 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center">
           <div className="min-w-0">
             <div className="flex items-center gap-3">
-              <div className="grid h-14 w-14 place-items-center rounded-2xl bg-gradient-to-br from-primary to-leaf text-sm font-bold text-primary-foreground">
+              <div className="grid h-14 w-14 place-items-center rounded-2xl bg-primary text-sm font-bold text-primary-foreground">
                 {initials(customer.full_name)}
               </div>
               <div className="min-w-0 flex-1">
@@ -358,7 +358,7 @@ function ProfileContent() {
             <button
               type="submit"
               disabled={savingMeet}
-              className="inline-flex h-9 items-center justify-center gap-1.5 rounded-xl bg-gradient-to-br from-primary to-leaf text-xs font-semibold text-primary-foreground disabled:opacity-60"
+              className="inline-flex h-9 items-center justify-center gap-1.5 rounded-xl bg-primary text-xs font-semibold text-primary-foreground disabled:opacity-60"
             >
               <CalendarPlus size={12} /> Schedule
             </button>
@@ -429,7 +429,7 @@ function ProfileContent() {
               <button
                 type="submit"
                 disabled={savingNote || !noteText.trim()}
-                className="inline-flex h-9 items-center gap-1.5 rounded-xl bg-gradient-to-br from-primary to-leaf px-3 text-xs font-semibold text-primary-foreground disabled:opacity-60"
+                className="inline-flex h-9 items-center gap-1.5 rounded-xl bg-primary px-3 text-xs font-semibold text-primary-foreground disabled:opacity-60"
               >
                 <Send size={12} /> Save note
               </button>

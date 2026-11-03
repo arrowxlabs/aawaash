@@ -121,7 +121,7 @@ export function GreetingHeader({
           {name ? (
             <span
               data-testid="greeting-name"
-              className="bg-gradient-to-br from-primary via-leaf to-primary bg-clip-text text-transparent"
+              className="text-primary"
             >
               {name}
             </span>
@@ -161,8 +161,8 @@ export function WalletHeroCard({
   spark?: number[];
 }) {
   return (
-    <div className="relative overflow-hidden rounded-[30px] bg-gradient-to-br from-primary via-primary to-leaf p-[1.5px] shadow-[var(--shadow-glow)]">
-      <div className="relative overflow-hidden rounded-[28.5px] bg-gradient-to-br from-primary to-leaf p-5 sm:p-6">
+    <div className="relative overflow-hidden rounded-[30px] bg-primary p-[1.5px] shadow-[var(--shadow-glow)]">
+      <div className="relative overflow-hidden rounded-[28.5px] bg-primary p-5 sm:p-6">
         <div className="pointer-events-none absolute -right-10 -top-16 h-48 w-48 rounded-full bg-white/25 blur-3xl" />
         <div className="pointer-events-none absolute -bottom-20 -left-8 h-44 w-44 rounded-full bg-gold/30 blur-3xl" />
 
@@ -436,7 +436,7 @@ export function Portrait({
         />
       ) : (
         <span
-          className="grid place-items-center rounded-2xl bg-gradient-to-br from-primary to-leaf text-[11px] font-bold text-primary-foreground ring-1 ring-white/50"
+          className="grid place-items-center rounded-2xl bg-primary text-[11px] font-bold text-primary-foreground ring-1 ring-white/50"
           style={{ height: size, width: size }}
         >
           {inits}
@@ -454,7 +454,7 @@ export function RankChip({ rank, icon }: { rank: number; icon?: ReactNode }) {
     rank === 1
       ? "bg-gradient-to-br from-gold to-gold/60 text-gold-foreground"
       : rank === 2
-        ? "bg-gradient-to-br from-primary-soft to-leaf/40 text-primary"
+        ? "bg-primary-soft text-primary"
         : rank === 3
           ? "bg-gradient-to-br from-orange-100 to-orange-50 text-orange-700"
           : "bg-muted text-muted-foreground";
@@ -483,7 +483,7 @@ export function Progress({ value, className = "" }: { value: number; className?:
       className={`h-1.5 w-full overflow-hidden rounded-full bg-muted ${className}`}
     >
       <div
-        className="h-full rounded-full bg-gradient-to-r from-primary to-leaf transition-[width] duration-[1200ms] ease-[cubic-bezier(0.22,1,0.36,1)]"
+        className="h-full rounded-full bg-primary transition-[width] duration-[1200ms] ease-[cubic-bezier(0.22,1,0.36,1)]"
         style={{ width: `${revealed ? Math.max(0, Math.min(100, value)) : 0}%` }}
       />
     </div>
@@ -678,7 +678,7 @@ export function ZeroState({
       {cta && (
         <Link
           to={cta.to as never}
-          className="relative mt-5 inline-flex h-11 min-h-11 items-center justify-center gap-1.5 rounded-2xl bg-gradient-to-br from-primary to-leaf px-5 text-sm font-semibold text-primary-foreground shadow-[var(--shadow-glow)] outline-none transition-transform hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background active:scale-[0.98]"
+          className="relative mt-5 inline-flex h-11 min-h-11 items-center justify-center gap-1.5 rounded-2xl bg-primary px-5 text-sm font-semibold text-primary-foreground shadow-[var(--shadow-glow)] outline-none transition-transform hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background active:scale-[0.98]"
         >
           {cta.label} <ChevronRight size={14} />
         </Link>

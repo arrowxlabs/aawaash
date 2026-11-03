@@ -273,7 +273,7 @@ function Hero() {
       <div className="relative z-10 mx-auto mt-8 max-w-3xl text-center">
         <h1 className="text-balance text-[2.6rem] font-extrabold leading-[1.03] tracking-tight text-foreground sm:text-6xl md:text-7xl">
           {hero.title}{" "}
-          <span className="bg-gradient-to-br from-primary via-leaf to-primary bg-clip-text text-transparent">
+          <span className="text-primary">
             {hero.accent}
           </span>
         </h1>
@@ -305,7 +305,7 @@ function Hero() {
           <div className="mt-5 flex justify-center">
             <a
               href="#projects"
-              className="inline-flex h-12 items-center justify-center gap-2 rounded-2xl bg-gradient-to-br from-primary to-leaf px-6 text-sm font-semibold text-primary-foreground shadow-[var(--shadow-glow)] transition-transform active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2"
+              className="inline-flex h-12 items-center justify-center gap-2 rounded-2xl bg-primary px-6 text-sm font-semibold text-primary-foreground shadow-[var(--shadow-glow)] transition-transform active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2"
             >
               Explore Projects <ArrowRight size={15} />
             </a>
@@ -351,7 +351,7 @@ function Hero() {
           </button>
           <button
             type="submit"
-            className="inline-flex h-10 shrink-0 items-center gap-1.5 rounded-full bg-gradient-to-br from-primary to-leaf px-4 text-sm font-semibold text-primary-foreground shadow-[var(--shadow-glow)] transition-transform active:scale-95"
+            className="inline-flex h-10 shrink-0 items-center gap-1.5 rounded-full bg-primary px-4 text-sm font-semibold text-primary-foreground shadow-[var(--shadow-glow)] transition-transform active:scale-95"
           >
             <Search size={14} />
             <span className="hidden sm:inline">Search</span>
@@ -375,7 +375,7 @@ function Hero() {
         <div className="mt-7 flex flex-wrap items-center justify-center gap-3">
           <a
             href="#projects"
-            className="inline-flex h-12 items-center justify-center gap-2 rounded-2xl bg-gradient-to-br from-primary to-leaf px-6 text-sm font-semibold text-primary-foreground shadow-[var(--shadow-glow)] transition-all hover:-translate-y-0.5 active:scale-[0.98]"
+            className="inline-flex h-12 items-center justify-center gap-2 rounded-2xl bg-primary px-6 text-sm font-semibold text-primary-foreground shadow-[var(--shadow-glow)] transition-all hover:-translate-y-0.5 active:scale-[0.98]"
           >
             Explore Projects
             <ArrowRight size={16} />
@@ -713,7 +713,7 @@ function Lifestyle() {
             </div>
             <h2 id="lifestyle-title" className="mt-4 text-3xl font-bold leading-tight text-foreground sm:text-4xl">
               {sec.title}{" "}
-              <span className="bg-gradient-to-r from-primary to-leaf bg-clip-text text-transparent">
+              <span className="bg-primary bg-clip-text text-transparent">
                 {sec.accent}
               </span>
             </h2>
@@ -772,7 +772,7 @@ function BookVisit() {
   return (
     <section aria-labelledby="visit-title" className="px-5 py-8 sm:px-8 sm:py-11">
       <div className="mx-auto max-w-6xl">
-        <div className="relative overflow-hidden rounded-[2rem] border border-border bg-gradient-to-br from-primary via-primary to-leaf p-8 text-primary-foreground shadow-[var(--shadow-glow)] sm:p-12">
+        <div className="relative overflow-hidden rounded-[2rem] border border-border bg-primary p-8 text-primary-foreground shadow-[var(--shadow-glow)] sm:p-12">
           <div className="pointer-events-none absolute -right-16 -top-16 h-64 w-64 rounded-full bg-gold/25 blur-3xl" />
           <div className="pointer-events-none absolute -bottom-24 -left-16 h-64 w-64 rounded-full bg-leaf/40 blur-3xl" />
 
@@ -1130,7 +1130,7 @@ function Projects() {
                           to="/projects/$slug"
                           params={{ slug: p.slug }}
                           aria-label={`Explore ${p.name}`}
-                          className="inline-flex h-12 items-center gap-2 rounded-full bg-gradient-to-r from-primary to-leaf px-5 text-xs font-bold uppercase tracking-[0.12em] text-primary-foreground shadow-[var(--shadow-glow)] transition-all hover:-translate-y-0.5 hover:brightness-110 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2"
+                          className="inline-flex h-12 items-center gap-2 rounded-full bg-primary px-5 text-xs font-bold uppercase tracking-[0.12em] text-primary-foreground shadow-[var(--shadow-glow)] transition-all hover:-translate-y-0.5 hover:brightness-110 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2"
                         >
                           Explore <ArrowRight size={14} />
                         </Link>
@@ -1367,7 +1367,7 @@ function ProjectDetailModal({
             <div className="mt-10 flex flex-col gap-3 sm:flex-row">
               <Link
                 to="/auth"
-                className="inline-flex h-12 flex-1 items-center justify-center gap-2 rounded-2xl bg-gradient-to-br from-primary to-leaf text-sm font-semibold text-primary-foreground shadow-[var(--shadow-glow)] transition hover:-translate-y-0.5 active:scale-95"
+                className="inline-flex h-12 flex-1 items-center justify-center gap-2 rounded-2xl bg-primary text-sm font-semibold text-primary-foreground shadow-[var(--shadow-glow)] transition hover:-translate-y-0.5 active:scale-95"
               >
                 Enquire now <ArrowRight size={15} />
               </Link>
@@ -1523,7 +1523,7 @@ function HowItWorks() {
             {steps.map((s, i) => (
               <Reveal key={`${s.title}-${i}`} variant="left" delay={i * 80}>
                 <li className="glass-card relative flex items-start gap-4 rounded-3xl p-5 shadow-[var(--shadow-soft)]">
-                  <div className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-gradient-to-br from-primary to-leaf text-sm font-bold text-primary-foreground shadow-[var(--shadow-glow)]">
+                  <div className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-primary text-sm font-bold text-primary-foreground shadow-[var(--shadow-glow)]">
                     {String(i + 1).padStart(2, "0")}
                   </div>
                   <div className="min-w-0 flex-1">
@@ -1733,7 +1733,7 @@ function Contact() {
               </div>
               <button
                 type="submit"
-                className="inline-flex h-12 items-center justify-center gap-2 rounded-2xl bg-gradient-to-br from-primary to-leaf text-sm font-semibold text-primary-foreground shadow-[var(--shadow-glow)] transition-all hover:-translate-y-0.5"
+                className="inline-flex h-12 items-center justify-center gap-2 rounded-2xl bg-primary text-sm font-semibold text-primary-foreground shadow-[var(--shadow-glow)] transition-all hover:-translate-y-0.5"
               >
                 {sent ? "Thanks — we'll be in touch" : "Send message"}
                 {!sent && <Send size={14} />}
@@ -1830,7 +1830,7 @@ function Footer() {
             </div>
             <Link
               to="/auth"
-              className="mt-3 inline-flex h-11 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-leaf px-4 text-sm font-semibold text-primary-foreground shadow-[var(--shadow-glow)]"
+              className="mt-3 inline-flex h-11 items-center justify-center rounded-2xl bg-primary px-4 text-sm font-semibold text-primary-foreground shadow-[var(--shadow-glow)]"
             >
               Login to Dashboard
             </Link>

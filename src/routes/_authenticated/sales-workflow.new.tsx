@@ -241,7 +241,7 @@ function NewDraftInner() {
             type="button"
             disabled={mutation.isPending || !customerId || !flatId || !saleAmount}
             onClick={() => mutation.mutate()}
-            className="mt-4 inline-flex h-11 items-center justify-center gap-2 rounded-2xl bg-gradient-to-br from-primary to-leaf px-5 text-sm font-semibold text-primary-foreground shadow-[var(--shadow-glow)] disabled:opacity-50"
+            className="mt-4 inline-flex h-11 items-center justify-center gap-2 rounded-2xl bg-primary px-5 text-sm font-semibold text-primary-foreground shadow-[var(--shadow-glow)] disabled:opacity-50"
           >
             {mutation.isPending ? <Loader2 className="size-4 animate-spin" /> : null}
             Lock flat & create draft

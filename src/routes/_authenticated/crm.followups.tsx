@@ -109,7 +109,7 @@ function FollowupGroup({
                 params={{ id: c.id }}
                 className="flex items-center gap-3 rounded-2xl border border-border/60 bg-surface p-3 shadow-[var(--shadow-soft)] transition-all hover:-translate-y-0.5"
               >
-                <div className="grid h-10 w-10 place-items-center rounded-2xl bg-gradient-to-br from-primary to-leaf text-xs font-bold text-primary-foreground">
+                <div className="grid h-10 w-10 place-items-center rounded-2xl bg-primary text-xs font-bold text-primary-foreground">
                   {initials(c.full_name)}
                 </div>
                 <div className="min-w-0 flex-1">

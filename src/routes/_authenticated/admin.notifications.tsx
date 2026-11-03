@@ -91,7 +91,7 @@ function Content() {
               onClick={() => setFilter(f)}
               className={`rounded-xl px-3 py-1.5 text-xs font-bold capitalize ${
                 filter === f
-                  ? "bg-gradient-to-r from-primary to-leaf text-primary-foreground shadow-[var(--shadow-glow)]"
+                  ? "bg-primary text-primary-foreground shadow-[var(--shadow-glow)]"
                   : "text-muted-foreground"
               }`}
             >

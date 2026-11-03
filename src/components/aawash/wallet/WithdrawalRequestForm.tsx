@@ -122,7 +122,7 @@ export function WithdrawalRequestForm({ withdrawable, invalidateKeys }: Props) {
       <button
         type="submit"
         disabled={disabled}
-        className="inline-flex h-12 items-center justify-center gap-2 rounded-2xl bg-gradient-to-br from-primary to-leaf text-sm font-semibold text-primary-foreground shadow-[var(--shadow-glow)] disabled:opacity-50"
+        className="inline-flex h-12 items-center justify-center gap-2 rounded-2xl bg-primary text-sm font-semibold text-primary-foreground shadow-[var(--shadow-glow)] disabled:opacity-50"
       >
         <Wallet size={14} /> {disabled ? "Submitting…" : "Request withdrawal"}
       </button>

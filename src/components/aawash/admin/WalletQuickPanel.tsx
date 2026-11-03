@@ -100,7 +100,7 @@ export function WalletQuickPanel({ open, onClose }: { open: boolean; onClose: ()
           onClick={(e) => e.stopPropagation()}
         >
           <div className="flex items-center gap-3 border-b border-border px-5 py-4">
-            <div className="grid h-10 w-10 place-items-center rounded-2xl bg-gradient-to-br from-primary to-leaf text-primary-foreground">
+            <div className="grid h-10 w-10 place-items-center rounded-2xl bg-primary text-primary-foreground">
               <Wallet size={18} />
             </div>
             <div className="min-w-0 flex-1">
@@ -302,7 +302,7 @@ function WalletRow({
         <button
           type="button"
           onClick={() => setOpen((o) => !o)}
-          className="inline-flex items-center gap-1.5 rounded-xl bg-gradient-to-r from-primary to-leaf px-3 py-2 text-[11px] font-bold text-primary-foreground shadow-[var(--shadow-glow)]"
+          className="inline-flex items-center gap-1.5 rounded-xl bg-primary px-3 py-2 text-[11px] font-bold text-primary-foreground shadow-[var(--shadow-glow)]"
         >
           <Wallet size={13} /> {open ? "Close" : "Edit"}
         </button>
@@ -438,7 +438,7 @@ function Avatar({ name, url }: { name: string; url: string | null }) {
     );
   }
   return (
-    <div className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-gradient-to-br from-primary to-leaf text-xs font-bold text-primary-foreground">
+    <div className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-primary text-xs font-bold text-primary-foreground">
       {initials(name)}
     </div>
   );

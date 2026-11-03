@@ -118,7 +118,7 @@ function ProjectsContent() {
                     </div>
                     <div className="mt-3 h-1.5 w-full overflow-hidden rounded-full bg-muted">
                       <div
-                        className="h-full rounded-full bg-gradient-to-r from-primary to-leaf transition-all"
+                        className="h-full rounded-full bg-primary transition-all"
                         style={{ width: `${pct}%` }}
                       />
                     </div>

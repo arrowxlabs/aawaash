@@ -100,9 +100,7 @@ function Content() {
     });
   }, [data, q, status]);
 
-  const cap = limits?.maxTeamLeaders ?? Number.POSITIVE_INFINITY;
   const current = limits?.currentTeamLeaders ?? data?.leaders.length ?? 0;
-  const canAdd = current < cap;
 
   return (
     <AdminShell profile={profile}>
@@ -122,30 +120,20 @@ function Content() {
             </p>
           </div>
           <div className="flex items-center gap-2">
-            {canAdd ? (
-              <button
-                type="button"
-                onClick={() => setShowAdd(true)}
-                className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-[var(--shadow-glow)] transition-transform hover:-translate-y-0.5"
-              >
-                <Plus size={16} />
-                Add Team Leader
-              </button>
-            ) : (
-              <span
-                title={`Team Leader cap reached (${cap}). Raise the limit in Limits.`}
-                className="inline-flex cursor-not-allowed items-center gap-2 rounded-full bg-muted px-5 py-2.5 text-sm font-semibold text-muted-foreground"
-              >
-                <Plus size={16} />
-                Cap reached ({current}/{cap})
-              </span>
-            )}
+            <button
+              type="button"
+              onClick={() => setShowAdd(true)}
+              className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-[var(--shadow-glow)] transition-transform hover:-translate-y-0.5"
+            >
+              <Plus size={16} />
+              Add Team Leader
+            </button>
           </div>
         </div>
       </section>
 
       <section className="mb-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
-        <MiniStat label="Team Leaders" value={Number.isFinite(cap) ? `${current}/${cap}` : String(current)} icon={<UserCog size={14} />} />
+        <MiniStat label="Team Leaders" value={String(current)} icon={<UserCog size={14} />} />
         <MiniStat
           label="Total Members"
           value={String(

@@ -109,7 +109,7 @@ export function AddLeaderDialog({ onClose }: { onClose: () => void }) {
   };
 
   return (
-    <Shell title="Add Team Leader" subtitle="Creates the login, the role, and the team assignment." onClose={onClose}>
+      <Shell title="Add Team Leader" subtitle="Creates the login, the role, and a new numbered team automatically." onClose={onClose}>
       <fieldset disabled={busy} className="contents"><form onSubmit={submit} className="grid gap-3">
         <label className="grid gap-1">
           <span className={labelCls}>Full name</span>
@@ -125,23 +125,10 @@ export function AddLeaderDialog({ onClose }: { onClose: () => void }) {
             <input className={field} type="text" value={form.password} onChange={set("password")} placeholder="min 8 characters" />
           </label>
         </div>
-        <div className="grid gap-3 sm:grid-cols-2">
-          <label className="grid gap-1">
-            <span className={labelCls}>Team</span>
-            <select className={field} value={form.teamId} onChange={set("teamId")}>
-              {openTeams.length === 0 ? <option value="">No team slots free</option> : null}
-              {openTeams.map((t) => (
-                <option key={t.id} value={t.id}>
-                  Team {t.letter} — {t.name}
-                </option>
-              ))}
-            </select>
-          </label>
-          <label className="grid gap-1">
-            <span className={labelCls}>Rename team (optional)</span>
-            <input className={field} value={form.teamName} onChange={set("teamName")} placeholder="Team name" />
-          </label>
-        </div>
+        <label className="grid gap-1">
+          <span className={labelCls}>Team display name (optional)</span>
+          <input className={field} value={form.teamName} onChange={set("teamName")} placeholder="Leave empty to use the team number" />
+        </label>
         <label className="grid gap-1">
           <span className={labelCls}>Email (optional)</span>
           <input className={field} value={form.email} onChange={set("email")} placeholder="leader@example.com" />

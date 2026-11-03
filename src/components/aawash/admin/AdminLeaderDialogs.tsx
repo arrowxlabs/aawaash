@@ -62,15 +62,13 @@ const labelCls = "text-[11px] font-semibold uppercase tracking-wider text-muted-
 
 /* ------------------------------ Add leader ------------------------------ */
 
-export function AddLeaderDialog({ teams, onClose }: { teams: Team[]; onClose: () => void }) {
+export function AddLeaderDialog({ onClose }: { onClose: () => void }) {
   const qc = useQueryClient();
   const create = useServerFn(createTeamLeaderFull);
-  const openTeams = teams.filter((t) => !t.leader_id);
   const [form, setForm] = useState({
     fullName: "",
     mobile: "",
     password: "",
-    teamId: openTeams[0]?.id ?? "",
     teamName: "",
     email: "",
   });
@@ -87,7 +85,6 @@ export function AddLeaderDialog({ teams, onClose }: { teams: Team[]; onClose: ()
       return toast.error("First name must start with a letter — e.g. Ravi Kumar");
     if (!/^\d{10}$/.test(form.mobile)) return toast.error("Mobile must be exactly 10 digits");
     if (form.password.length < 8) return toast.error("Password must be at least 8 characters");
-    if (!form.teamId) return toast.error("Select an available team");
     setBusy(true);
     const t = toast.loading("Creating Team Leader…");
     try {
@@ -96,7 +93,7 @@ export function AddLeaderDialog({ teams, onClose }: { teams: Team[]; onClose: ()
           fullName,
           mobile: form.mobile,
           password: form.password,
-          teamId: form.teamId,
+          teamId: "new",
           teamName: form.teamName.trim() || undefined,
           email: form.email.trim(),
         },

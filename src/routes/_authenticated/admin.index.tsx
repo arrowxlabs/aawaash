@@ -307,6 +307,19 @@ function ProjectSectionCard({ project }: { project: Record<string, unknown> }) {
   );
 }
 
+type LeaderSummary = {
+  id: string;
+  full_name?: string | null;
+  mobile_number?: string | null;
+  login_id?: string | null;
+  team_id?: string | null;
+  team_letter?: string | null;
+  team_name?: string | null;
+  member_count?: number | null;
+  total_revenue?: number | null;
+  wallet_balance?: number | null;
+};
+
 function LeaderCard({ leader }: { leader: LeaderSummary }) {
   return (
     <Link to="/admin/team-leaders/$id" params={{ id: leader.id }} className="group rounded-3xl border border-border bg-surface p-4 shadow-[var(--shadow-soft)] transition-all hover:-translate-y-1 hover:shadow-[var(--shadow-float)]">
@@ -450,7 +463,7 @@ function MemberCreatePanel({
       <form onSubmit={submit} className="mt-4 space-y-3">
         <SmallInput label="Name" value={fullName} onChange={setFullName} placeholder="Member name" />
         <label className="block text-xs font-bold text-muted-foreground">
-          Team A / Team B / Team C
+          Team
           <select value={teamId} onChange={(e) => setTeamId(e.target.value)} className="mt-1 block w-full rounded-2xl border border-border bg-background px-3 py-2.5 text-sm font-semibold text-foreground outline-none focus:border-primary">
             <option value="">Choose team</option>
             {availableTeams.map((team) => (

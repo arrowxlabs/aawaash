@@ -88,7 +88,7 @@
 
   --shadow-soft: 0 1px 2px oklch(0.34 0.055 338 / 0.05), 0 8px 24px oklch(0.34 0.055 338 / 0.07);
   --shadow-float: 0 14px 42px -14px oklch(0.34 0.055 338 / 0.18);
-  --shadow-glow: 0 18px 48px -18px oklch(0.52 0.045 122 / 0.3);
+  --shadow-glow: 0 18px 48px -18px oklch(0.349 0.065 338 / 0.35);
 
   /* Deep forest surfaces used by the app-style dashboards */
   --color-forest: var(--forest);
@@ -268,7 +268,7 @@
 
   --shadow-soft: 0 1px 2px oklch(0.34 0.055 338 / 0.05), 0 8px 24px oklch(0.34 0.055 338 / 0.08);
   --shadow-float: 0 14px 42px -14px oklch(0.34 0.055 338 / 0.2);
-  --shadow-glow: 0 18px 48px -18px oklch(0.52 0.045 122 / 0.3);
+  --shadow-glow: 0 18px 48px -18px oklch(0.349 0.065 338 / 0.35);
 }
 
 
@@ -277,6 +277,34 @@
   * {
     border-color: var(--color-border);
   }
+
+  /* Native-app feel: no tap flash, no bounce, instant taps */
+  html {
+    overscroll-behavior-y: none;
+    text-size-adjust: 100%;
+  }
+  body {
+    overscroll-behavior-y: contain;
+  }
+  button,
+  a,
+  [role="button"],
+  input,
+  select,
+  textarea,
+  label {
+    -webkit-tap-highlight-color: transparent;
+  }
+  button,
+  a,
+  [role="button"] {
+    touch-action: manipulation;
+  }
+  img,
+  svg {
+    -webkit-user-drag: none;
+  }
+
 
   html,
   body {
@@ -514,7 +542,6 @@
 @utility aurora-violet {
   background:
     radial-gradient(60% 50% at 15% 10%, color-mix(in oklab, var(--primary) 26%, transparent) 0%, transparent 60%),
-    radial-gradient(50% 45% at 90% 20%, color-mix(in oklab, var(--leaf) 22%, transparent) 0%, transparent 60%),
     radial-gradient(70% 55% at 50% 100%, color-mix(in oklab, var(--primary) 18%, transparent) 0%, transparent 65%);
 }
 

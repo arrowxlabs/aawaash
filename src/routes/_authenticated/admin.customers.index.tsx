@@ -403,7 +403,7 @@ function Content() {
                     }`}
                   >
                     <input type="checkbox" checked={isSel} onChange={() => toggle(c.id)} />
-                    <div className="grid h-11 w-11 place-items-center rounded-2xl bg-gradient-to-br from-primary to-leaf text-xs font-bold text-primary-foreground">
+                    <div className="grid h-11 w-11 place-items-center rounded-2xl bg-primary text-xs font-bold text-primary-foreground">
                       {initials(c.full_name)}
                     </div>
                     <Link

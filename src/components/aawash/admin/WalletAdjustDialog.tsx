@@ -101,7 +101,7 @@ export function WalletAdjustDialog({
         className="relative w-full max-w-md overflow-hidden rounded-3xl border border-border bg-surface shadow-[var(--shadow-float)]"
       >
         <div className="flex items-center gap-3 border-b border-border px-5 py-4">
-          <div className="grid h-10 w-10 place-items-center rounded-2xl bg-gradient-to-br from-primary to-leaf text-primary-foreground">
+          <div className="grid h-10 w-10 place-items-center rounded-2xl bg-primary text-primary-foreground">
             <Wallet size={18} />
           </div>
           <div className="min-w-0 flex-1">

@@ -31,7 +31,7 @@ function Content() {
     <AdminShell role="super_admin" profile={profile}>
       <section className="glass-card overflow-hidden rounded-4xl p-6 shadow-[var(--shadow-float)] sm:p-8">
         <div className="grid gap-6 sm:grid-cols-[auto_minmax(0,1fr)] sm:items-center">
-          <div className="grid h-24 w-24 place-items-center rounded-3xl bg-gradient-to-br from-primary to-leaf text-3xl font-black text-primary-foreground shadow-[var(--shadow-glow)]">
+          <div className="grid h-24 w-24 place-items-center rounded-3xl bg-primary text-3xl font-black text-primary-foreground shadow-[var(--shadow-glow)]">
             {initials}
           </div>
           <div className="min-w-0">
@@ -85,7 +85,7 @@ function Content() {
               key={r}
               className={`rounded-full px-3 py-1 text-[11px] font-semibold ${
                 i === 0
-                  ? "bg-gradient-to-r from-primary to-leaf text-primary-foreground"
+                  ? "bg-primary text-primary-foreground"
                   : "border border-dashed border-border text-muted-foreground"
               }`}
             >

@@ -211,7 +211,7 @@ function ProjectDetailPage() {
               <section className="glass-card mt-4 overflow-hidden rounded-[2rem] shadow-[var(--shadow-float)]">
                 <div
                   className={`relative aspect-[16/9] w-full overflow-hidden bg-gradient-to-br ${
-                    (p.hero_hue as string) || "from-primary/25 to-leaf/20"
+                    (p.hero_hue as string) || "from-primary/25 to-primary/10"
                   } sm:aspect-[16/7]`}
                 >
                   {heroImages[0] ? (
@@ -655,7 +655,7 @@ function TourPanel({ modelUrl, isGlb }: { modelUrl: string | null; isGlb: boolea
               </a>
             )}
           </div>
-          <div className="relative aspect-video w-full bg-gradient-to-br from-primary/5 to-leaf/10">
+          <div className="relative aspect-video w-full bg-gradient-to-br from-primary/5 to-primary/10">
             {!modelUrl ? (
               <EmptyTile icon={<Box size={22} />} label="3D tour coming soon" />
             ) : isGlb ? (
@@ -792,7 +792,7 @@ function LocationPanel({ p }: { p: Record<string, unknown> }) {
   return (
     <Reveal>
       <section className="glass-card overflow-hidden rounded-3xl shadow-[var(--shadow-soft)]">
-        <div className="aspect-video w-full bg-gradient-to-br from-primary/10 to-leaf/10">
+        <div className="aspect-video w-full bg-gradient-to-br from-primary/10 to-primary/5">
           {map ? (
             <iframe title="Map" src={map} className="h-full w-full border-0" loading="lazy" />
           ) : (

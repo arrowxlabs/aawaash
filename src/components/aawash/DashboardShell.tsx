@@ -104,7 +104,7 @@ export function DashboardShell({
               aria-label="Open your profile"
               className="glass-card hidden min-h-11 items-center gap-2.5 rounded-full py-1 pl-1 pr-3 shadow-[var(--shadow-soft)] transition-all hover:-translate-y-0.5 hover:shadow-[var(--shadow-float)] sm:inline-flex outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
             >
-              <span className="grid h-9 w-9 place-items-center rounded-full bg-gradient-to-br from-primary to-leaf text-xs font-bold text-primary-foreground ring-2 ring-white/70">
+              <span className="grid h-9 w-9 place-items-center rounded-full bg-primary text-xs font-bold text-primary-foreground ring-2 ring-white/70">
                 {initials}
               </span>
               <span className="flex flex-col leading-tight">
@@ -189,7 +189,7 @@ function FloatingSideRail({ role }: { role: AppRole }) {
           {activeIndex >= 0 && (
             <span
               aria-hidden
-              className="pointer-events-none absolute left-2 right-2 h-11 rounded-2xl bg-gradient-to-br from-primary to-leaf shadow-[var(--shadow-glow)] transition-transform duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)]"
+              className="pointer-events-none absolute left-2 right-2 h-11 rounded-2xl bg-primary shadow-[var(--shadow-glow)] transition-transform duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)]"
               style={{ transform: `translateY(${activeIndex * cell}px)` }}
             />
           )}

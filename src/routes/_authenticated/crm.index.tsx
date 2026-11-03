@@ -159,7 +159,7 @@ function CrmContent() {
               <h1 className="mt-2 font-display text-4xl font-extrabold leading-[1.05] tracking-tight text-foreground sm:text-5xl">
                 Every relationship,
                 <br />
-                <span className="bg-gradient-to-br from-primary via-primary to-leaf bg-clip-text text-transparent">
+                <span className="bg-primary bg-clip-text text-transparent">
                   one calm surface.
                 </span>
               </h1>
@@ -170,7 +170,7 @@ function CrmContent() {
               <div className="mt-6 flex flex-wrap gap-2">
                 <Link
                   to="/crm/new"
-                  className="group inline-flex h-11 items-center justify-center gap-2 rounded-2xl bg-gradient-to-br from-primary to-leaf px-5 text-sm font-semibold text-primary-foreground shadow-[var(--shadow-glow)] transition-all hover:-translate-y-0.5 hover:shadow-[var(--shadow-float)]"
+                  className="group inline-flex h-11 items-center justify-center gap-2 rounded-2xl bg-primary px-5 text-sm font-semibold text-primary-foreground shadow-[var(--shadow-glow)] transition-all hover:-translate-y-0.5 hover:shadow-[var(--shadow-float)]"
                 >
                   <UserPlus size={15} className="transition-transform group-hover:rotate-6" /> New lead
                 </Link>
@@ -189,7 +189,7 @@ function CrmContent() {
                 fallback={
                   <div
                     aria-hidden
-                    className="mx-auto mb-3 w-56 rounded-3xl bg-gradient-to-br from-primary/10 via-transparent to-leaf/10"
+                    className="mx-auto mb-3 w-56 rounded-3xl bg-gradient-to-br from-primary/10 via-transparent to-primary/5"
                     style={{ height: 200 }}
                   />
                 }
@@ -197,7 +197,7 @@ function CrmContent() {
                 <Parallax3DBuilding className="mx-auto mb-3 w-56" height={200} />
               </Suspense>
               <div className="relative w-56 rounded-3xl border border-border/60 bg-gradient-to-br from-white/80 to-surface-warm/60 p-4 shadow-[var(--shadow-soft)] backdrop-blur-xl">
-                <div className="absolute -inset-px rounded-3xl bg-gradient-to-br from-primary/25 via-transparent to-leaf/25 opacity-40 blur-xl" />
+                <div className="absolute -inset-px rounded-3xl bg-gradient-to-br from-primary/25 via-transparent to-primary/5 opacity-40 blur-xl" />
                 <div className="relative">
                   <div className="flex items-center justify-between">
                     <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-muted-foreground">
@@ -212,7 +212,7 @@ function CrmContent() {
                   <div className="mt-1 text-[11px] text-muted-foreground">Conversion rate</div>
                   <div className="mt-4 h-1.5 w-full overflow-hidden rounded-full bg-primary-soft">
                     <div
-                      className="h-full rounded-full bg-gradient-to-r from-primary to-leaf transition-all duration-700"
+                      className="h-full rounded-full bg-primary transition-all duration-700"
                       style={{ width: `${Math.min(100, Number(s?.conversion ?? 0))}%` }}
                     />
                   </div>
@@ -327,7 +327,7 @@ function CrmContent() {
                         onClick={() => navigate({ to: "/crm/$id", params: { id: c.id } })}
                         className="group flex w-full items-center gap-3 rounded-2xl border border-border/60 bg-surface p-3 text-left shadow-[var(--shadow-soft)] transition-all hover:-translate-y-0.5 hover:border-primary/30"
                       >
-                        <div className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-gradient-to-br from-primary to-leaf text-xs font-bold text-primary-foreground">
+                        <div className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-primary text-xs font-bold text-primary-foreground">
                           {initials(c.full_name)}
                         </div>
                         <div className="min-w-0 flex-1">

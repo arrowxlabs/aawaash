@@ -116,7 +116,7 @@ function MembersContent() {
                     params={{ id: m.id }}
                     className="flex items-center gap-3 rounded-2xl border border-border/50 bg-surface p-3 transition-all hover:-translate-y-0.5 hover:shadow-[var(--shadow-soft)]"
                   >
-                    <div className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-gradient-to-br from-primary to-leaf text-xs font-bold text-primary-foreground">
+                    <div className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-primary text-xs font-bold text-primary-foreground">
                       {initials(m.full_name)}
                     </div>
                     <div className="min-w-0 flex-1">

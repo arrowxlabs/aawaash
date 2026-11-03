@@ -105,27 +105,8 @@ function AdminContent() {
   }, []);
 
   const projectRows = (projects.data ?? []).slice(0, 5);
-  const teamRows = useMemo(() => {
-    const rows = leaders.data?.leaders ?? [];
-    const teams = (leaders.data?.teams ?? [])
-      .filter((team) => !team.is_deleted)
-      .sort((a, b) => compareTeamCodes(a.letter, b.letter));
-    const slots: Array<{ letter: string; team?: (typeof teams)[number] | { id: string; name: string }; leader?: (typeof rows)[number]; occupiedLeaderId: string | null }> = teams.map((team) => {
-      const leader = rows.find((l) => l.team_id === team.id);
-      const occupiedLeaderId = team.leader_id && !leader ? team.leader_id : null;
-      return { letter: team.letter, team, leader, occupiedLeaderId };
-    });
-    // Always offer one fresh slot so admins can keep adding leaders.
-    if (!slots.some((s) => !s.leader && !s.occupiedLeaderId)) {
-      const next = nextTeamCode(teams.map((t) => t.letter));
-      slots.push({ letter: next, team: { id: "new", name: `Team ${next}` }, occupiedLeaderId: null });
-    }
-    return slots;
-  }, [leaders.data]);
-  const currentLeaderCount = leaders.data?.leaders.length ?? limits.data?.currentTeamLeaders ?? 0;
-  const maxTeamLeaders = limits.data?.maxTeamLeaders ?? Number.POSITIVE_INFINITY;
-  const teamDataLoading = leaders.isLoading || leaders.isFetching || limits.isLoading || limits.isFetching;
-  const teamDataError = leaders.error ?? limits.error;
+  const teamDataLoading = leaders.isLoading || leaders.isFetching;
+  const teamDataError = leaders.error;
 
   return (
     <AdminShell profile={profile}>
@@ -234,8 +215,8 @@ function AdminContent() {
         <div>
           <div className="mb-3 flex items-center justify-between gap-3">
             <div>
-              <h2 className="text-xl font-extrabold text-foreground">Team leader slots</h2>
-              <p className="text-xs text-muted-foreground">Unlimited leaders — every team is numbered (Team 1, Team 2 …). Fill the open slot to add another.</p>
+              <h2 className="text-xl font-extrabold text-foreground">Team leaders</h2>
+              <p className="text-xs text-muted-foreground">Unlimited leaders — every new leader automatically gets their own numbered team (Team 1, Team 2 …).</p>
             </div>
             <div className="flex items-center gap-2">
               <button
@@ -261,23 +242,16 @@ function AdminContent() {
             </div>
           )}
           <div className="grid gap-3 lg:grid-cols-3">
-            {teamRows.map((slot) => (
-              <TeamLeaderSlot
-                key={slot.letter}
-                letter={slot.letter}
-                team={slot.team}
-                leader={slot.leader}
-                occupiedLeaderId={slot.occupiedLeaderId}
-                capReached={currentLeaderCount >= maxTeamLeaders}
-                maxTeamLeaders={maxTeamLeaders}
-                teamDataLoading={teamDataLoading}
-                onRefresh={refreshTeamData}
-                onCreate={async (input) => {
-                  await createLeaderFn({ data: input });
-                  await invalidateAdmin(qc, "leader");
-                }}
-              />
+            {(leaders.data?.leaders ?? []).map((leader) => (
+              <LeaderCard key={leader.id} leader={leader} />
             ))}
+            <AddTeamLeaderCard
+              teamDataLoading={teamDataLoading}
+              onCreate={async (input) => {
+                await createLeaderFn({ data: { ...input, teamId: "new" } });
+                await invalidateAdmin(qc, "leader");
+              }}
+            />
           </div>
         </div>
 
@@ -333,13 +307,6 @@ function ProjectSectionCard({ project }: { project: Record<string, unknown> }) {
   );
 }
 
-type TeamSlot = {
-  id?: string | null;
-  letter?: string | null;
-  name?: string | null;
-  leader_id?: string | null;
-};
-
 type LeaderSummary = {
   id: string;
   full_name?: string | null;
@@ -353,26 +320,31 @@ type LeaderSummary = {
   wallet_balance?: number | null;
 };
 
-function TeamLeaderSlot({
-  letter,
-  team,
-  leader,
-  occupiedLeaderId,
-  capReached,
-  maxTeamLeaders,
+function LeaderCard({ leader }: { leader: LeaderSummary }) {
+  return (
+    <Link to="/admin/team-leaders/$id" params={{ id: leader.id }} className="group rounded-3xl border border-border bg-surface p-4 shadow-[var(--shadow-soft)] transition-all hover:-translate-y-1 hover:shadow-[var(--shadow-float)]">
+      <div className="flex items-start justify-between gap-3">
+        <div className="grid h-12 w-12 place-items-center rounded-2xl bg-primary-soft text-sm font-extrabold text-primary">{initials(leader.full_name)}</div>
+        <span className="rounded-full bg-leaf/15 px-2 py-1 text-[10px] font-extrabold uppercase text-leaf">Team {leader.team_letter ?? "—"}</span>
+      </div>
+      <h3 className="mt-4 line-clamp-1 text-lg font-extrabold text-foreground">{leader.full_name}</h3>
+      <div className="mt-1 font-mono text-xs font-bold text-muted-foreground">Login ID: {leader.login_id ?? leader.mobile_number}</div>
+      <div className="mt-4 grid grid-cols-3 gap-2 text-center text-xs">
+        <MiniStat label="Members" value={leader.member_count ?? 0} />
+        <MiniStat label="Revenue" value={formatINR(leader.total_revenue ?? 0, { compact: true })} />
+        <MiniStat label="Wallet" value={formatINR(Number(leader.wallet_balance ?? 0), { compact: true })} />
+      </div>
+      <div className="mt-4 inline-flex items-center gap-1 text-xs font-bold text-primary">Open leader page <ArrowRight size={12} /></div>
+    </Link>
+  );
+}
+
+function AddTeamLeaderCard({
   teamDataLoading,
-  onRefresh,
   onCreate,
 }: {
-  letter: string;
-  team?: TeamSlot | null;
-  leader?: LeaderSummary | null;
-  occupiedLeaderId?: string | null;
-  capReached: boolean;
-  maxTeamLeaders: number;
   teamDataLoading: boolean;
-  onRefresh: () => Promise<void>;
-  onCreate: (input: { fullName: string; mobile: string; password: string; teamId: string; teamName?: string }) => Promise<void>;
+  onCreate: (input: { fullName: string; mobile: string; password: string }) => Promise<void>;
 }) {
   const [fullName, setFullName] = useState("");
   const [mobile, setMobile] = useState("");
@@ -380,16 +352,6 @@ function TeamLeaderSlot({
   const [busy, setBusy] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
-  const teamId = team?.id ?? "";
-  const unavailableReason = teamDataLoading
-    ? "Checking the latest available teams before enabling this slot."
-    : !teamId
-      ? "Team data is unavailable for this slot. Refresh teams, then try again."
-      : occupiedLeaderId
-        ? "This team already has a leader assignment, but the leader profile did not load. Refresh teams or open Manage leaders."
-        : capReached
-          ? `Team Leader cap reached (${maxTeamLeaders}). Increase the limit in Settings or remove an inactive leader first.`
-          : null;
   const formIssue = fullName.trim().length < 2
     ? "Enter the leader name."
     : !/^\d{10}$/.test(mobile)
@@ -397,25 +359,18 @@ function TeamLeaderSlot({
       : password.length < 8
         ? "Enter a password with at least 8 characters."
         : null;
-  const canCreate = !unavailableReason && !formIssue && !leader && !busy;
-  const disabledReason = unavailableReason ?? formIssue;
+  const canCreate = !formIssue && !busy && !teamDataLoading;
 
   async function submit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    if (!canCreate) {
-      if (disabledReason) {
-        setError(disabledReason);
-        if (unavailableReason) toast.error(disabledReason);
-      }
-      return;
-    }
+    if (!canCreate) return;
     setError(null);
     setMessage(null);
     setBusy(true);
     try {
-      await onCreate({ fullName: fullName.trim(), mobile, password, teamId, teamName: team?.name ?? `Team ${letter}` });
-      setMessage(`Team Leader ${letter} created. Login ID: ${mobile}`);
-      toast.success(`Team Leader ${letter} created`);
+      await onCreate({ fullName: fullName.trim(), mobile, password });
+      setMessage("Team Leader created — a new numbered team was assigned automatically.");
+      toast.success("Team Leader created");
       setFullName("");
       setMobile("");
       setPassword("");
@@ -428,31 +383,12 @@ function TeamLeaderSlot({
     }
   }
 
-  if (leader) {
-    return (
-      <Link to="/admin/team-leaders/$id" params={{ id: leader.id }} className="group rounded-3xl border border-border bg-surface p-4 shadow-[var(--shadow-soft)] transition-all hover:-translate-y-1 hover:shadow-[var(--shadow-float)]">
-        <div className="flex items-start justify-between gap-3">
-          <div className="grid h-12 w-12 place-items-center rounded-2xl bg-primary-soft text-sm font-extrabold text-primary">{initials(leader.full_name)}</div>
-          <span className="rounded-full bg-leaf/15 px-2 py-1 text-[10px] font-extrabold uppercase text-leaf">Team {leader.team_letter ?? letter}</span>
-        </div>
-        <h3 className="mt-4 line-clamp-1 text-lg font-extrabold text-foreground">{leader.full_name}</h3>
-        <div className="mt-1 font-mono text-xs font-bold text-muted-foreground">Login ID: {leader.login_id ?? leader.mobile_number}</div>
-        <div className="mt-4 grid grid-cols-3 gap-2 text-center text-xs">
-          <MiniStat label="Members" value={leader.member_count ?? 0} />
-          <MiniStat label="Revenue" value={formatINR(leader.total_revenue ?? 0, { compact: true })} />
-          <MiniStat label="Wallet" value={formatINR(Number(leader.wallet_balance ?? 0), { compact: true })} />
-        </div>
-        <div className="mt-4 inline-flex items-center gap-1 text-xs font-bold text-primary">Open leader page <ArrowRight size={12} /></div>
-      </Link>
-    );
-  }
-
   return (
-    <form onSubmit={submit} className="rounded-3xl border border-border bg-surface p-4 shadow-[var(--shadow-soft)]">
+    <form onSubmit={submit} className="rounded-3xl border border-primary/30 bg-primary-soft/40 p-4 shadow-[var(--shadow-soft)]">
       <div className="flex items-center justify-between gap-2">
         <div>
-          <div className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Team Leader {letter}</div>
-          <div className="text-sm font-extrabold text-foreground">{team?.name ?? `Team ${letter}`}</div>
+          <div className="text-xs font-bold uppercase tracking-wider text-primary">New leader</div>
+          <div className="text-sm font-extrabold text-foreground">Auto-creates the next team</div>
         </div>
         <UserCog size={18} className="text-primary" />
       </div>
@@ -463,16 +399,14 @@ function TeamLeaderSlot({
       </div>
       {message && <div className="mt-3 rounded-2xl bg-leaf/10 px-3 py-2 text-xs font-semibold text-leaf">{message}</div>}
       {error && <div className="mt-3 rounded-2xl bg-destructive/10 px-3 py-2 text-xs font-semibold text-destructive">{error}</div>}
-      <button type="submit" aria-label={`Save leader Team ${letter}`} disabled={!canCreate} className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-primary px-4 py-2.5 text-xs font-extrabold uppercase tracking-wider text-primary-foreground shadow-[var(--shadow-glow)] disabled:cursor-not-allowed disabled:opacity-50">
+      <button type="submit" aria-label="Add team leader" disabled={!canCreate} className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-primary px-4 py-2.5 text-xs font-extrabold uppercase tracking-wider text-primary-foreground shadow-[var(--shadow-glow)] disabled:cursor-not-allowed disabled:opacity-50">
         {busy ? <Loader2 size={14} className="animate-spin" /> : <Save size={14} />}
-        Save leader
+        Add leader
       </button>
-      {disabledReason && <div className="mt-2 text-[11px] font-semibold text-muted-foreground">{disabledReason}</div>}
-      {unavailableReason && (
-        <button type="button" onClick={() => void onRefresh()} className="mt-2 text-[11px] font-extrabold text-primary">
-          Refresh teams
-        </button>
-      )}
+      {formIssue && !busy && <div className="mt-2 text-[11px] font-semibold text-muted-foreground">{formIssue}</div>}
+      <p className="mt-2 text-[11px] text-muted-foreground">
+        No team to pick — the next free team number is assigned to every new leader.
+      </p>
     </form>
   );
 }
@@ -529,7 +463,7 @@ function MemberCreatePanel({
       <form onSubmit={submit} className="mt-4 space-y-3">
         <SmallInput label="Name" value={fullName} onChange={setFullName} placeholder="Member name" />
         <label className="block text-xs font-bold text-muted-foreground">
-          Team A / Team B / Team C
+          Team
           <select value={teamId} onChange={(e) => setTeamId(e.target.value)} className="mt-1 block w-full rounded-2xl border border-border bg-background px-3 py-2.5 text-sm font-semibold text-foreground outline-none focus:border-primary">
             <option value="">Choose team</option>
             {availableTeams.map((team) => (

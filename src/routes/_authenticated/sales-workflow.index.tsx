@@ -63,7 +63,7 @@ function SalesWorkflowInner() {
               Sales Workflow
             </div>
             <h1 className="mt-3 text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl">
-              Every sale, <span className="bg-gradient-to-br from-primary to-leaf bg-clip-text text-transparent">fully traceable.</span>
+              Every sale, <span className="bg-primary bg-clip-text text-transparent">fully traceable.</span>
             </h1>
             <p className="mt-2 max-w-xl text-sm text-muted-foreground">
               Draft, submit, approve — every step logged, every inventory update atomic.
@@ -71,7 +71,7 @@ function SalesWorkflowInner() {
           </div>
           <Link
             to="/sales-workflow/new"
-            className="inline-flex h-11 items-center gap-1.5 rounded-2xl bg-gradient-to-br from-primary to-leaf px-4 text-sm font-semibold text-primary-foreground shadow-[var(--shadow-glow)]"
+            className="inline-flex h-11 items-center gap-1.5 rounded-2xl bg-primary px-4 text-sm font-semibold text-primary-foreground shadow-[var(--shadow-glow)]"
           >
             <Plus size={14} /> New draft
           </Link>

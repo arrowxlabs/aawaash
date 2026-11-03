@@ -71,7 +71,7 @@ function WalletContent() {
       </header>
 
       <section className="mt-6">
-        <div className="glass-card relative overflow-hidden rounded-4xl bg-gradient-to-br from-primary via-leaf to-primary p-6 text-primary-foreground shadow-[var(--shadow-float)] sm:p-8">
+        <div className="glass-card relative overflow-hidden rounded-4xl bg-primary p-6 text-primary-foreground shadow-[var(--shadow-float)] sm:p-8">
           <div className="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full bg-white/10 blur-3xl" />
           <div className="pointer-events-none absolute -bottom-16 -left-16 h-56 w-56 rounded-full bg-gold/30 blur-3xl" />
           <div className="relative flex items-start justify-between gap-4">

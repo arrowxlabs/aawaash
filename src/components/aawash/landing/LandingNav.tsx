@@ -55,7 +55,7 @@ export function LandingNav() {
           </Link>
           <a
             href="/projects"
-            className="hidden h-10 items-center rounded-2xl bg-gradient-to-br from-primary to-leaf px-4 text-sm font-semibold text-primary-foreground shadow-[var(--shadow-glow)] transition-all hover:-translate-y-0.5 sm:inline-flex"
+            className="hidden h-10 items-center rounded-2xl bg-primary px-4 text-sm font-semibold text-primary-foreground shadow-[var(--shadow-glow)] transition-all hover:-translate-y-0.5 sm:inline-flex"
           >
             Explore
           </a>
@@ -110,7 +110,7 @@ export function LandingNav() {
                   <a
                     href="/projects"
                     onClick={() => setOpen(false)}
-                    className="inline-flex h-12 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-leaf text-sm font-semibold text-primary-foreground shadow-[var(--shadow-glow)]"
+                    className="inline-flex h-12 items-center justify-center rounded-2xl bg-primary text-sm font-semibold text-primary-foreground shadow-[var(--shadow-glow)]"
                   >
                     Explore Projects
                   </a>

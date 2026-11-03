@@ -213,7 +213,7 @@ function DockList({ items, pathname }: { items: NavItem[]; pathname: string }) {
         {/* Magnetic emerald puck */}
         <li
           aria-hidden="true"
-          className="pointer-events-none absolute inset-y-1.5 overflow-hidden rounded-[22px] bg-gradient-to-br from-[color:var(--primary)] via-[color:color-mix(in_oklab,var(--primary)_86%,white)] to-[color:var(--leaf)] shadow-[0_10px_22px_-8px_color-mix(in_oklab,var(--primary)_55%,transparent),inset_0_1px_1px_rgba(255,255,255,0.4)] motion-safe:transition-[transform,width,opacity] motion-safe:duration-[420ms] motion-reduce:transition-none"
+          className="pointer-events-none absolute inset-y-1.5 overflow-hidden rounded-[22px] bg-[color:var(--primary)] shadow-[0_10px_22px_-8px_color-mix(in_oklab,var(--primary)_55%,transparent),inset_0_1px_1px_rgba(255,255,255,0.4)] motion-safe:transition-[transform,width,opacity] motion-safe:duration-[420ms] motion-reduce:transition-none"
           style={{
             width: puck.w ? `${puck.w}px` : 0,
             transform: `translate3d(${puck.x}px, 0, 0)`,

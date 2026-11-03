@@ -273,7 +273,7 @@ function Hero() {
       <div className="relative z-10 mx-auto mt-8 max-w-3xl text-center">
         <h1 className="text-balance text-[2.6rem] font-extrabold leading-[1.03] tracking-tight text-foreground sm:text-6xl md:text-7xl">
           {hero.title}{" "}
-          <span className="bg-gradient-to-br from-primary via-leaf to-primary bg-clip-text text-transparent">
+          <span className="text-primary">
             {hero.accent}
           </span>
         </h1>
@@ -305,7 +305,7 @@ function Hero() {
           <div className="mt-5 flex justify-center">
             <a
               href="#projects"
-              className="inline-flex h-12 items-center justify-center gap-2 rounded-2xl bg-gradient-to-br from-primary to-leaf px-6 text-sm font-semibold text-primary-foreground shadow-[var(--shadow-glow)] transition-transform active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2"
+              className="inline-flex h-12 items-center justify-center gap-2 rounded-2xl bg-primary px-6 text-sm font-semibold text-primary-foreground shadow-[var(--shadow-glow)] transition-transform active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2"
             >
               Explore Projects <ArrowRight size={15} />
             </a>
@@ -351,7 +351,7 @@ function Hero() {
           </button>
           <button
             type="submit"
-            className="inline-flex h-10 shrink-0 items-center gap-1.5 rounded-full bg-gradient-to-br from-primary to-leaf px-4 text-sm font-semibold text-primary-foreground shadow-[var(--shadow-glow)] transition-transform active:scale-95"
+            className="inline-flex h-10 shrink-0 items-center gap-1.5 rounded-full bg-primary px-4 text-sm font-semibold text-primary-foreground shadow-[var(--shadow-glow)] transition-transform active:scale-95"
           >
             <Search size={14} />
             <span className="hidden sm:inline">Search</span>
@@ -375,7 +375,7 @@ function Hero() {
         <div className="mt-7 flex flex-wrap items-center justify-center gap-3">
           <a
             href="#projects"
-            className="inline-flex h-12 items-center justify-center gap-2 rounded-2xl bg-gradient-to-br from-primary to-leaf px-6 text-sm font-semibold text-primary-foreground shadow-[var(--shadow-glow)] transition-all hover:-translate-y-0.5 active:scale-[0.98]"
+            className="inline-flex h-12 items-center justify-center gap-2 rounded-2xl bg-primary px-6 text-sm font-semibold text-primary-foreground shadow-[var(--shadow-glow)] transition-all hover:-translate-y-0.5 active:scale-[0.98]"
           >
             Explore Projects
             <ArrowRight size={16} />
@@ -469,14 +469,14 @@ function Hero() {
             <Mini3DBuilding
               className="absolute -left-2 top-40 hidden sm:block"
               style={{ animationDelay: "-1.5s" }}
-              hue="from-primary/40 via-primary/25 to-leaf/25"
+              hue="from-primary/40 via-primary/25 to-primary/10"
               floors={5}
               label="Serai · 24 units left"
             />
             <Mini3DBuilding
               className="absolute -right-2 top-44 hidden md:block"
               style={{ animationDelay: "-3.5s" }}
-              hue="from-gold/30 via-primary/25 to-leaf/20"
+              hue="from-gold/30 via-primary/25 to-primary/10"
               floors={7}
               label="Skyline · 3 BHK"
             />
@@ -555,12 +555,12 @@ function Mini3DBuilding({
 /* ------------------------------ CATEGORIES ------------------------------ */
 
 const CATEGORIES: { label: string; icon: typeof Home; hue: string; count: string; accent: string }[] = [
-  { label: "Apartments", icon: Home, hue: "from-primary/20 to-leaf/15 text-primary", count: "1,240+ homes", accent: "bg-primary/10" },
-  { label: "Villas", icon: Trees, hue: "from-leaf/25 to-primary/10 text-primary", count: "320 estates", accent: "bg-leaf/15" },
+  { label: "Apartments", icon: Home, hue: "from-primary/20 to-primary/5 text-primary", count: "1,240+ homes", accent: "bg-primary/10" },
+  { label: "Villas", icon: Trees, hue: "from-leaf/25 to-leaf/5 text-primary", count: "320 estates", accent: "bg-leaf/15" },
   { label: "Towers", icon: Building2, hue: "from-gold/25 to-primary/10 text-gold-foreground", count: "78 landmarks", accent: "bg-gold/15" },
   { label: "Plots", icon: Landmark, hue: "from-primary/15 to-gold/15 text-primary", count: "540 parcels", accent: "bg-primary/10" },
-  { label: "Commercial", icon: Store, hue: "from-leaf/20 to-gold/20 text-primary", count: "96 spaces", accent: "bg-leaf/15" },
-  { label: "Luxury", icon: Gem, hue: "from-gold/25 to-leaf/15 text-gold-foreground", count: "42 signature", accent: "bg-gold/20" },
+  { label: "Commercial", icon: Store, hue: "from-leaf/20 to-leaf/5 text-primary", count: "96 spaces", accent: "bg-leaf/15" },
+  { label: "Luxury", icon: Gem, hue: "from-gold/25 to-gold/5 text-gold-foreground", count: "42 signature", accent: "bg-gold/20" },
 ];
 
 function Categories() {
@@ -590,7 +590,7 @@ function Categories() {
               className="mt-4 text-3xl font-bold leading-[1.05] tracking-tight text-foreground sm:text-[2.75rem]"
             >
               {sec.title}{" "}
-              <span className="bg-gradient-to-r from-primary via-leaf to-primary bg-clip-text text-transparent">
+              <span className="text-primary">
                 {sec.accent}
               </span>
             </h2>
@@ -713,7 +713,7 @@ function Lifestyle() {
             </div>
             <h2 id="lifestyle-title" className="mt-4 text-3xl font-bold leading-tight text-foreground sm:text-4xl">
               {sec.title}{" "}
-              <span className="bg-gradient-to-r from-primary to-leaf bg-clip-text text-transparent">
+              <span className="bg-primary bg-clip-text text-transparent">
                 {sec.accent}
               </span>
             </h2>
@@ -772,7 +772,7 @@ function BookVisit() {
   return (
     <section aria-labelledby="visit-title" className="px-5 py-8 sm:px-8 sm:py-11">
       <div className="mx-auto max-w-6xl">
-        <div className="relative overflow-hidden rounded-[2rem] border border-border bg-gradient-to-br from-primary via-primary to-leaf p-8 text-primary-foreground shadow-[var(--shadow-glow)] sm:p-12">
+        <div className="relative overflow-hidden rounded-[2rem] border border-border bg-primary p-8 text-primary-foreground shadow-[var(--shadow-glow)] sm:p-12">
           <div className="pointer-events-none absolute -right-16 -top-16 h-64 w-64 rounded-full bg-gold/25 blur-3xl" />
           <div className="pointer-events-none absolute -bottom-24 -left-16 h-64 w-64 rounded-full bg-leaf/40 blur-3xl" />
 
@@ -1012,12 +1012,12 @@ function Projects() {
           <h2 className="mt-5 font-serif text-[1.6rem] font-medium leading-[1.15] tracking-[0.015em] text-foreground sm:text-[2.35rem]">
             {sec.title ?? "A home to"}{" "}
             <span className="relative inline-block">
-              <span className="bg-gradient-to-r from-primary via-leaf to-primary bg-clip-text text-transparent">
+              <span className="text-primary">
                 {sec.accent ?? "come home to."}
               </span>
               <span
                 aria-hidden
-                className="absolute -bottom-1 left-0 h-[3px] w-full rounded-full bg-gradient-to-r from-primary/60 via-leaf/50 to-transparent"
+                className="absolute -bottom-1 left-0 h-[3px] w-full rounded-full bg-gradient-to-r from-primary/60 to-transparent"
               />
             </span>
           </h2>
@@ -1035,7 +1035,7 @@ function Projects() {
             const cover = i === 0 && sec.image ? sec.image : p.images[idx];
             return (
               <Reveal key={p.name} variant="up" delay={i * 100}>
-                <div className="rounded-[2.5rem] bg-gradient-to-br from-primary/25 via-leaf/15 to-gold/20 p-[1.5px] shadow-[var(--shadow-float)]">
+                <div className="rounded-[2.5rem] bg-gradient-to-br from-primary/25 to-primary/10 p-[1.5px] shadow-[var(--shadow-float)]">
                 <article
                   role="link"
                   tabIndex={0}
@@ -1052,7 +1052,7 @@ function Projects() {
                   className="group relative cursor-pointer overflow-hidden rounded-[2.4rem] bg-surface transition-all duration-500 ease-out hover:-translate-y-1.5 hover:shadow-[var(--shadow-glow)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2"
                 >
                   {/* Image — clean, no overlaid copy */}
-                  <div className="relative m-2 aspect-[4/3] overflow-hidden rounded-[2rem] bg-gradient-to-br from-primary/10 to-leaf/10 sm:m-2.5 sm:aspect-[16/10]">
+                  <div className="relative m-2 aspect-[4/3] overflow-hidden rounded-[2rem] bg-gradient-to-br from-primary/10 to-primary/5 sm:m-2.5 sm:aspect-[16/10]">
                     <img
                       src={cover}
                       alt={`${p.name} — cover`}
@@ -1130,7 +1130,7 @@ function Projects() {
                           to="/projects/$slug"
                           params={{ slug: p.slug }}
                           aria-label={`Explore ${p.name}`}
-                          className="inline-flex h-12 items-center gap-2 rounded-full bg-gradient-to-r from-primary to-leaf px-5 text-xs font-bold uppercase tracking-[0.12em] text-primary-foreground shadow-[var(--shadow-glow)] transition-all hover:-translate-y-0.5 hover:brightness-110 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2"
+                          className="inline-flex h-12 items-center gap-2 rounded-full bg-primary px-5 text-xs font-bold uppercase tracking-[0.12em] text-primary-foreground shadow-[var(--shadow-glow)] transition-all hover:-translate-y-0.5 hover:brightness-110 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2"
                         >
                           Explore <ArrowRight size={14} />
                         </Link>
@@ -1214,7 +1214,7 @@ function ProjectDetailModal({
 
         <div className="max-h-[92vh] overflow-y-auto">
           {/* Hero image */}
-          <div className="relative aspect-[16/10] w-full overflow-hidden bg-gradient-to-br from-primary/10 to-leaf/10">
+          <div className="relative aspect-[16/10] w-full overflow-hidden bg-gradient-to-br from-primary/10 to-primary/5">
             <img
               src={gallery[idx]}
               alt={`${p.name} — view ${idx + 1}`}
@@ -1367,7 +1367,7 @@ function ProjectDetailModal({
             <div className="mt-10 flex flex-col gap-3 sm:flex-row">
               <Link
                 to="/auth"
-                className="inline-flex h-12 flex-1 items-center justify-center gap-2 rounded-2xl bg-gradient-to-br from-primary to-leaf text-sm font-semibold text-primary-foreground shadow-[var(--shadow-glow)] transition hover:-translate-y-0.5 active:scale-95"
+                className="inline-flex h-12 flex-1 items-center justify-center gap-2 rounded-2xl bg-primary text-sm font-semibold text-primary-foreground shadow-[var(--shadow-glow)] transition hover:-translate-y-0.5 active:scale-95"
               >
                 Enquire now <ArrowRight size={15} />
               </Link>
@@ -1455,10 +1455,10 @@ function DetailContactRow({
 
 const SMART_PANELS: { icon: typeof Calculator; title: string; body: string; tone: string; iconTone: string }[] = [
   { icon: Calculator, title: "EMI Calculator", body: "Model monthly payments across tenures and rates.", tone: "from-primary-soft to-primary-soft/40", iconTone: "bg-primary/15 text-primary" },
-  { icon: Wand2, title: "AI Property Match", body: "Tell us your lifestyle — we surface the right homes.", tone: "from-leaf/20 to-primary-soft/30", iconTone: "bg-leaf/25 text-primary" },
+  { icon: Wand2, title: "AI Property Match", body: "Tell us your lifestyle — we surface the right homes.", tone: "from-leaf/20 to-leaf/5", iconTone: "bg-leaf/25 text-primary" },
   { icon: CalendarCheck, title: "Site Visit Booking", body: "Pick a slot. Concierge handles the rest.", tone: "from-gold/20 to-primary-soft/30", iconTone: "bg-gold/25 text-gold-foreground" },
-  { icon: Gauge, title: "Investment Score", body: "See appreciation & rental yield at a glance.", tone: "from-primary-soft to-leaf/25", iconTone: "bg-primary/15 text-primary" },
-  { icon: GitCompare, title: "Compare Projects", body: "Side-by-side view — specs, price, timelines.", tone: "from-leaf/25 to-gold/15", iconTone: "bg-leaf/25 text-primary" },
+  { icon: Gauge, title: "Investment Score", body: "See appreciation & rental yield at a glance.", tone: "from-primary-soft to-primary-soft/30", iconTone: "bg-primary/15 text-primary" },
+  { icon: GitCompare, title: "Compare Projects", body: "Side-by-side view — specs, price, timelines.", tone: "from-leaf/25 to-leaf/5", iconTone: "bg-leaf/25 text-primary" },
   { icon: Bookmark, title: "Saved Properties", body: "Your wishlist, synced across every device.", tone: "from-primary-soft to-gold/15", iconTone: "bg-primary/15 text-primary" },
 ];
 
@@ -1523,7 +1523,7 @@ function HowItWorks() {
             {steps.map((s, i) => (
               <Reveal key={`${s.title}-${i}`} variant="left" delay={i * 80}>
                 <li className="glass-card relative flex items-start gap-4 rounded-3xl p-5 shadow-[var(--shadow-soft)]">
-                  <div className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-gradient-to-br from-primary to-leaf text-sm font-bold text-primary-foreground shadow-[var(--shadow-glow)]">
+                  <div className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-primary text-sm font-bold text-primary-foreground shadow-[var(--shadow-glow)]">
                     {String(i + 1).padStart(2, "0")}
                   </div>
                   <div className="min-w-0 flex-1">
@@ -1550,11 +1550,11 @@ function HowItWorks() {
 
 const SLABS = [
   { range: "₹0 – 1 Cr", tone: "from-primary-soft to-primary-soft/30" },
-  { range: "₹1 – 3 Cr", tone: "from-primary-soft to-leaf/20" },
-  { range: "₹3 – 5 Cr", tone: "from-leaf/25 to-primary-soft" },
-  { range: "₹5 – 7 Cr", tone: "from-leaf/30 to-gold/15" },
+  { range: "₹1 – 3 Cr", tone: "from-primary-soft to-primary-soft/30" },
+  { range: "₹3 – 5 Cr", tone: "from-leaf/25 to-leaf/5" },
+  { range: "₹5 – 7 Cr", tone: "from-leaf/30 to-leaf/5" },
   { range: "₹7 – 10 Cr", tone: "from-gold/20 to-primary-soft" },
-  { range: "₹10 Cr+", tone: "from-gold/30 to-leaf/20" },
+  { range: "₹10 Cr+", tone: "from-gold/30 to-gold/5" },
 ];
 
 function Commission() {
@@ -1577,7 +1577,7 @@ function Commission() {
             </div>
             <h2 className="mt-5 text-[1.75rem] font-semibold leading-[1.12] tracking-[0.005em] text-foreground sm:text-[2.5rem]">
               {sec.title}{" "}
-              <span className="bg-gradient-to-r from-primary via-leaf to-primary bg-clip-text text-transparent">
+              <span className="text-primary">
                 {sec.accent}
               </span>
             </h2>
@@ -1590,7 +1590,7 @@ function Commission() {
         <div className="mt-12 grid grid-cols-2 gap-3.5 sm:grid-cols-3 sm:gap-5 lg:grid-cols-6">
           {slabs.map((slab, i) => (
             <Reveal key={`${slab.range}-${i}`} variant="scale" delay={i * 60}>
-              <div className="group relative h-full rounded-[1.75rem] bg-gradient-to-br from-primary/25 via-leaf/15 to-gold/20 p-[1.2px] transition-transform duration-500 hover:-translate-y-1.5">
+              <div className="group relative h-full rounded-[1.75rem] bg-gradient-to-br from-primary/25 to-primary/10 p-[1.2px] transition-transform duration-500 hover:-translate-y-1.5">
                 <div
                   className={`relative flex h-full flex-col items-center justify-center overflow-hidden rounded-[1.7rem] bg-gradient-to-br ${slab.tone} px-3 py-7 text-center shadow-[var(--shadow-soft)] transition-shadow duration-500 group-hover:shadow-[var(--shadow-float)]`}
                 >
@@ -1702,7 +1702,7 @@ function Contact() {
                   value={d.body ?? ""}
                 />
               ))}
-              <div className="mt-2 aspect-[16/9] w-full overflow-hidden rounded-2xl bg-gradient-to-br from-primary-soft to-leaf/20">
+              <div className="mt-2 aspect-[16/9] w-full overflow-hidden rounded-2xl bg-gradient-to-br from-primary-soft to-primary-soft/30">
                 <div className="grid h-full w-full place-items-center text-xs font-semibold text-muted-foreground">
                   Map preview
                 </div>
@@ -1733,7 +1733,7 @@ function Contact() {
               </div>
               <button
                 type="submit"
-                className="inline-flex h-12 items-center justify-center gap-2 rounded-2xl bg-gradient-to-br from-primary to-leaf text-sm font-semibold text-primary-foreground shadow-[var(--shadow-glow)] transition-all hover:-translate-y-0.5"
+                className="inline-flex h-12 items-center justify-center gap-2 rounded-2xl bg-primary text-sm font-semibold text-primary-foreground shadow-[var(--shadow-glow)] transition-all hover:-translate-y-0.5"
               >
                 {sent ? "Thanks — we'll be in touch" : "Send message"}
                 {!sent && <Send size={14} />}
@@ -1830,7 +1830,7 @@ function Footer() {
             </div>
             <Link
               to="/auth"
-              className="mt-3 inline-flex h-11 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-leaf px-4 text-sm font-semibold text-primary-foreground shadow-[var(--shadow-glow)]"
+              className="mt-3 inline-flex h-11 items-center justify-center rounded-2xl bg-primary px-4 text-sm font-semibold text-primary-foreground shadow-[var(--shadow-glow)]"
             >
               Login to Dashboard
             </Link>

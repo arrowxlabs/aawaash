@@ -123,7 +123,7 @@ function Content() {
       {/* Hero */}
       <section className="glass-card mb-6 rounded-3xl p-6 shadow-[var(--shadow-soft)]">
         <div className="flex flex-wrap items-start gap-4">
-          <div className="grid h-16 w-16 place-items-center rounded-3xl bg-gradient-to-br from-primary to-leaf text-lg font-bold text-primary-foreground">
+          <div className="grid h-16 w-16 place-items-center rounded-3xl bg-primary text-lg font-bold text-primary-foreground">
             {initials(c.full_name)}
           </div>
           <div className="min-w-0 flex-1">

@@ -100,9 +100,7 @@ function Content() {
     });
   }, [data, q, status]);
 
-  const cap = limits?.maxTeamLeaders ?? Number.POSITIVE_INFINITY;
   const current = limits?.currentTeamLeaders ?? data?.leaders.length ?? 0;
-  const canAdd = current < cap;
 
   return (
     <AdminShell profile={profile}>
@@ -122,30 +120,20 @@ function Content() {
             </p>
           </div>
           <div className="flex items-center gap-2">
-            {canAdd ? (
-              <button
-                type="button"
-                onClick={() => setShowAdd(true)}
-                className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-[var(--shadow-glow)] transition-transform hover:-translate-y-0.5"
-              >
-                <Plus size={16} />
-                Add Team Leader
-              </button>
-            ) : (
-              <span
-                title={`Team Leader cap reached (${cap}). Raise the limit in Limits.`}
-                className="inline-flex cursor-not-allowed items-center gap-2 rounded-full bg-muted px-5 py-2.5 text-sm font-semibold text-muted-foreground"
-              >
-                <Plus size={16} />
-                Cap reached ({current}/{cap})
-              </span>
-            )}
+            <button
+              type="button"
+              onClick={() => setShowAdd(true)}
+              className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-[var(--shadow-glow)] transition-transform hover:-translate-y-0.5"
+            >
+              <Plus size={16} />
+              Add Team Leader
+            </button>
           </div>
         </div>
       </section>
 
       <section className="mb-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
-        <MiniStat label="Team Leaders" value={Number.isFinite(cap) ? `${current}/${cap}` : String(current)} icon={<UserCog size={14} />} />
+        <MiniStat label="Team Leaders" value={String(current)} icon={<UserCog size={14} />} />
         <MiniStat
           label="Total Members"
           value={String(
@@ -217,7 +205,7 @@ function Content() {
               className="group relative flex flex-col gap-4 overflow-hidden rounded-4xl border border-border bg-surface p-5 shadow-[var(--shadow-soft)] transition-all hover:-translate-y-1 hover:shadow-[var(--shadow-float)]"
             >
               <div className="flex items-start gap-3">
-                <div className="grid h-14 w-14 flex-shrink-0 place-items-center overflow-hidden rounded-2xl bg-gradient-to-br from-primary/25 via-leaf/20 to-gold/20 text-lg font-bold text-primary">
+                <div className="grid h-14 w-14 flex-shrink-0 place-items-center overflow-hidden rounded-2xl bg-gradient-to-br from-primary/25 to-primary/10 text-lg font-bold text-primary">
                   {l.avatar_url ? (
                     <img src={l.avatar_url} alt={l.full_name} className="h-full w-full object-cover" />
                   ) : (
@@ -315,7 +303,6 @@ function Content() {
 
       {showAdd && (
         <AddLeaderDialog
-          teams={(data?.teams ?? []) as { id: string; letter: string; name: string; leader_id: string | null }[]}
           onClose={() => {
             setShowAdd(false);
             void refetch();

@@ -11,7 +11,6 @@ import {
 import { invalidateAdmin } from "@/lib/admin-cache";
 import { hasUsableFirstName, normalizeFullName } from "@/lib/greeting";
 
-type Team = { id: string; letter: string; name: string; leader_id: string | null };
 
 function Shell({
   title,
@@ -62,15 +61,13 @@ const labelCls = "text-[11px] font-semibold uppercase tracking-wider text-muted-
 
 /* ------------------------------ Add leader ------------------------------ */
 
-export function AddLeaderDialog({ teams, onClose }: { teams: Team[]; onClose: () => void }) {
+export function AddLeaderDialog({ onClose }: { onClose: () => void }) {
   const qc = useQueryClient();
   const create = useServerFn(createTeamLeaderFull);
-  const openTeams = teams.filter((t) => !t.leader_id);
   const [form, setForm] = useState({
     fullName: "",
     mobile: "",
     password: "",
-    teamId: openTeams[0]?.id ?? "",
     teamName: "",
     email: "",
   });
@@ -87,7 +84,6 @@ export function AddLeaderDialog({ teams, onClose }: { teams: Team[]; onClose: ()
       return toast.error("First name must start with a letter — e.g. Ravi Kumar");
     if (!/^\d{10}$/.test(form.mobile)) return toast.error("Mobile must be exactly 10 digits");
     if (form.password.length < 8) return toast.error("Password must be at least 8 characters");
-    if (!form.teamId) return toast.error("Select an available team");
     setBusy(true);
     const t = toast.loading("Creating Team Leader…");
     try {
@@ -96,7 +92,7 @@ export function AddLeaderDialog({ teams, onClose }: { teams: Team[]; onClose: ()
           fullName,
           mobile: form.mobile,
           password: form.password,
-          teamId: form.teamId,
+          teamId: "new",
           teamName: form.teamName.trim() || undefined,
           email: form.email.trim(),
         },
@@ -112,7 +108,7 @@ export function AddLeaderDialog({ teams, onClose }: { teams: Team[]; onClose: ()
   };
 
   return (
-    <Shell title="Add Team Leader" subtitle="Creates the login, the role, and the team assignment." onClose={onClose}>
+      <Shell title="Add Team Leader" subtitle="Creates the login, the role, and a new numbered team automatically." onClose={onClose}>
       <fieldset disabled={busy} className="contents"><form onSubmit={submit} className="grid gap-3">
         <label className="grid gap-1">
           <span className={labelCls}>Full name</span>
@@ -128,23 +124,10 @@ export function AddLeaderDialog({ teams, onClose }: { teams: Team[]; onClose: ()
             <input className={field} type="text" value={form.password} onChange={set("password")} placeholder="min 8 characters" />
           </label>
         </div>
-        <div className="grid gap-3 sm:grid-cols-2">
-          <label className="grid gap-1">
-            <span className={labelCls}>Team</span>
-            <select className={field} value={form.teamId} onChange={set("teamId")}>
-              {openTeams.length === 0 ? <option value="">No team slots free</option> : null}
-              {openTeams.map((t) => (
-                <option key={t.id} value={t.id}>
-                  Team {t.letter} — {t.name}
-                </option>
-              ))}
-            </select>
-          </label>
-          <label className="grid gap-1">
-            <span className={labelCls}>Rename team (optional)</span>
-            <input className={field} value={form.teamName} onChange={set("teamName")} placeholder="Team name" />
-          </label>
-        </div>
+        <label className="grid gap-1">
+          <span className={labelCls}>Team display name (optional)</span>
+          <input className={field} value={form.teamName} onChange={set("teamName")} placeholder="Leave empty to use the team number" />
+        </label>
         <label className="grid gap-1">
           <span className={labelCls}>Email (optional)</span>
           <input className={field} value={form.email} onChange={set("email")} placeholder="leader@example.com" />

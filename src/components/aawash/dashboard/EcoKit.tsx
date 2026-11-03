@@ -211,7 +211,7 @@ export function Avatar({
       ) : (
         <span
           aria-hidden="true"
-          className="grid h-full w-full place-items-center rounded-full bg-gradient-to-br from-primary to-leaf font-bold leading-none text-primary-foreground ring-2 ring-white"
+          className="grid h-full w-full place-items-center rounded-full bg-primary font-bold leading-none text-primary-foreground ring-2 ring-white"
         >
           {initialsOf(name)}
         </span>

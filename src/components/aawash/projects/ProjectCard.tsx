@@ -57,7 +57,7 @@ export function ProjectCard({
   const salesPct = total ? Math.min(100, Math.round((sold / total) * 100)) : 0;
   const buildPct = project.completion_percent ?? 0;
   const heroImg = project.hero_banner_url || project.thumbnail_url;
-  const hue = project.hero_hue || "from-primary/25 to-leaf/20";
+  const hue = project.hero_hue || "from-primary/25 to-primary/10";
   const price = project.price_min ?? project.price_from;
 
   return (
@@ -169,7 +169,7 @@ export function ProjectCard({
           </div>
           <div className="h-1.5 w-full overflow-hidden rounded-full bg-muted">
             <div
-              className="h-full rounded-full bg-gradient-to-r from-primary to-leaf transition-all duration-700"
+              className="h-full rounded-full bg-primary transition-all duration-700"
               style={{ width: `${salesPct}%` }}
             />
           </div>

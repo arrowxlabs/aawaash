@@ -131,7 +131,7 @@ export function FAB({
       aria-label={label}
       className={cn(
         "fixed bottom-24 right-5 z-30 grid h-14 w-14 place-items-center rounded-full",
-        "bg-gradient-to-br from-primary to-leaf text-primary-foreground",
+        "bg-primary text-primary-foreground",
         "shadow-[var(--shadow-glow)] transition-all hover:-translate-y-1 active:scale-95",
         "md:bottom-8 md:right-8",
         className,
@@ -256,7 +256,7 @@ export function Avatar({
     >
       <div
         className={cn(
-          "grid h-full w-full place-items-center overflow-hidden rounded-full bg-gradient-to-br from-primary to-leaf font-bold text-primary-foreground",
+          "grid h-full w-full place-items-center overflow-hidden rounded-full bg-primary font-bold text-primary-foreground",
           ring && "ring-2 ring-gold/60 ring-offset-2 ring-offset-background",
         )}
         style={{ fontSize: Math.max(10, size * 0.36) }}
@@ -303,7 +303,7 @@ export function LinearProgress({
         ? "bg-success"
         : tone === "danger"
           ? "bg-destructive"
-          : "bg-gradient-to-r from-primary to-leaf";
+          : "bg-primary";
   return (
     <div className={cn("w-full", className)}>
       {label && (

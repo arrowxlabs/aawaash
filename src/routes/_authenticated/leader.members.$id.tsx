@@ -63,7 +63,7 @@ function MemberDetailContent() {
         <>
           <section className="glass-card mt-4 rounded-4xl p-5 shadow-[var(--shadow-float)] sm:p-8">
             <div className="flex flex-wrap items-center gap-4">
-              <div className="grid h-16 w-16 shrink-0 place-items-center rounded-3xl bg-gradient-to-br from-primary to-leaf text-lg font-bold text-primary-foreground">
+              <div className="grid h-16 w-16 shrink-0 place-items-center rounded-3xl bg-primary text-lg font-bold text-primary-foreground">
                 {initials(data.member.full_name)}
               </div>
               <div className="min-w-0 flex-1">

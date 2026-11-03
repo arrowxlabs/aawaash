@@ -72,7 +72,7 @@ function LeaderboardContent() {
                   className={`glass-card relative flex flex-col items-center rounded-3xl p-3 text-center shadow-[var(--shadow-soft)] ${orderCls} ${heights[i]} ${m.id === meId ? "ring-2 ring-primary" : ""}`}
                 >
                   <Trophy size={20} className={tier === 1 ? "text-gold" : tier === 2 ? "text-primary" : "text-muted-foreground"} />
-                  <div className="mt-2 grid h-12 w-12 place-items-center rounded-full bg-gradient-to-br from-primary to-leaf text-xs font-bold text-primary-foreground">
+                  <div className="mt-2 grid h-12 w-12 place-items-center rounded-full bg-primary text-xs font-bold text-primary-foreground">
                     {initials(m.full_name)}
                   </div>
                   <div className="mt-2 truncate text-xs font-bold text-foreground">{m.full_name.split(" ")[0]}</div>
@@ -105,7 +105,7 @@ function LeaderboardContent() {
                       >
                         {m.rank <= 3 ? <Trophy size={16} /> : m.rank}
                       </div>
-                      <div className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-gradient-to-br from-primary to-leaf text-xs font-bold text-primary-foreground">
+                      <div className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-primary text-xs font-bold text-primary-foreground">
                         {initials(m.full_name)}
                       </div>
                       <div className="min-w-0 flex-1">

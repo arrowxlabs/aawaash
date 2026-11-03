@@ -215,8 +215,8 @@ function AdminContent() {
         <div>
           <div className="mb-3 flex items-center justify-between gap-3">
             <div>
-              <h2 className="text-xl font-extrabold text-foreground">Team leader slots</h2>
-              <p className="text-xs text-muted-foreground">Unlimited leaders — every team is numbered (Team 1, Team 2 …). Fill the open slot to add another.</p>
+              <h2 className="text-xl font-extrabold text-foreground">Team leaders</h2>
+              <p className="text-xs text-muted-foreground">Unlimited leaders — every new leader automatically gets their own numbered team (Team 1, Team 2 …).</p>
             </div>
             <div className="flex items-center gap-2">
               <button
@@ -242,23 +242,16 @@ function AdminContent() {
             </div>
           )}
           <div className="grid gap-3 lg:grid-cols-3">
-            {teamRows.map((slot) => (
-              <TeamLeaderSlot
-                key={slot.letter}
-                letter={slot.letter}
-                team={slot.team}
-                leader={slot.leader}
-                occupiedLeaderId={slot.occupiedLeaderId}
-                capReached={currentLeaderCount >= maxTeamLeaders}
-                maxTeamLeaders={maxTeamLeaders}
-                teamDataLoading={teamDataLoading}
-                onRefresh={refreshTeamData}
-                onCreate={async (input) => {
-                  await createLeaderFn({ data: input });
-                  await invalidateAdmin(qc, "leader");
-                }}
-              />
+            {(leaders.data?.leaders ?? []).map((leader) => (
+              <LeaderCard key={leader.id} leader={leader} />
             ))}
+            <AddTeamLeaderCard
+              teamDataLoading={teamDataLoading}
+              onCreate={async (input) => {
+                await createLeaderFn({ data: { ...input, teamId: "new" } });
+                await invalidateAdmin(qc, "leader");
+              }}
+            />
           </div>
         </div>
 

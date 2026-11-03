@@ -11,7 +11,6 @@ import {
 import { invalidateAdmin } from "@/lib/admin-cache";
 import { hasUsableFirstName, normalizeFullName } from "@/lib/greeting";
 
-type Team = { id: string; letter: string; name: string; leader_id: string | null };
 
 function Shell({
   title,

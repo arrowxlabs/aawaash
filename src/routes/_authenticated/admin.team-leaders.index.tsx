@@ -303,7 +303,6 @@ function Content() {
 
       {showAdd && (
         <AddLeaderDialog
-          teams={(data?.teams ?? []) as { id: string; letter: string; name: string; leader_id: string | null }[]}
           onClose={() => {
             setShowAdd(false);
             void refetch();

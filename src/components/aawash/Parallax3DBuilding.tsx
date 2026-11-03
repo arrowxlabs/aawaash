@@ -113,7 +113,7 @@ export function Parallax3DBuilding({
       aria-hidden
     >
       {/* ambient glow — cheap, always rendered as a lightweight fallback */}
-      <div className="pointer-events-none absolute inset-6 rounded-[36px] bg-gradient-to-br from-primary/25 via-transparent to-leaf/20 opacity-70 blur-2xl" />
+      <div className="pointer-events-none absolute inset-6 rounded-[36px] bg-gradient-to-br from-primary/25 via-transparent to-primary/5 opacity-70 blur-2xl" />
 
       {!visible ? null : (
         <div

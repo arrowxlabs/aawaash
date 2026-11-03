@@ -205,7 +205,7 @@ function Content() {
               className="group relative flex flex-col gap-4 overflow-hidden rounded-4xl border border-border bg-surface p-5 shadow-[var(--shadow-soft)] transition-all hover:-translate-y-1 hover:shadow-[var(--shadow-float)]"
             >
               <div className="flex items-start gap-3">
-                <div className="grid h-14 w-14 flex-shrink-0 place-items-center overflow-hidden rounded-2xl bg-gradient-to-br from-primary/25 via-leaf/20 to-gold/20 text-lg font-bold text-primary">
+                <div className="grid h-14 w-14 flex-shrink-0 place-items-center overflow-hidden rounded-2xl bg-gradient-to-br from-primary/25 to-primary/10 text-lg font-bold text-primary">
                   {l.avatar_url ? (
                     <img src={l.avatar_url} alt={l.full_name} className="h-full w-full object-cover" />
                   ) : (

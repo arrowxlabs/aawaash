@@ -189,7 +189,7 @@ function CrmContent() {
                 fallback={
                   <div
                     aria-hidden
-                    className="mx-auto mb-3 w-56 rounded-3xl bg-gradient-to-br from-primary/10 via-transparent to-leaf/10"
+                    className="mx-auto mb-3 w-56 rounded-3xl bg-gradient-to-br from-primary/10 via-transparent to-primary/5"
                     style={{ height: 200 }}
                   />
                 }
@@ -197,7 +197,7 @@ function CrmContent() {
                 <Parallax3DBuilding className="mx-auto mb-3 w-56" height={200} />
               </Suspense>
               <div className="relative w-56 rounded-3xl border border-border/60 bg-gradient-to-br from-white/80 to-surface-warm/60 p-4 shadow-[var(--shadow-soft)] backdrop-blur-xl">
-                <div className="absolute -inset-px rounded-3xl bg-gradient-to-br from-primary/25 via-transparent to-leaf/25 opacity-40 blur-xl" />
+                <div className="absolute -inset-px rounded-3xl bg-gradient-to-br from-primary/25 via-transparent to-primary/5 opacity-40 blur-xl" />
                 <div className="relative">
                   <div className="flex items-center justify-between">
                     <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-muted-foreground">

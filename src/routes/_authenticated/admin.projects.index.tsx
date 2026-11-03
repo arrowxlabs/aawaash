@@ -172,7 +172,7 @@ function AdminProjectsContent() {
                 className="group relative flex flex-col overflow-hidden rounded-4xl border border-border bg-surface shadow-[var(--shadow-soft)] transition-all hover:-translate-y-1 hover:shadow-[var(--shadow-float)]"
               >
                 <div
-                  className="relative h-40 w-full overflow-hidden bg-gradient-to-br from-primary/20 via-leaf/15 to-gold/15"
+                  className="relative h-40 w-full overflow-hidden bg-gradient-to-br from-primary/20 to-primary/5"
                   style={
                     p.thumbnail_url || p.cover_url || p.hero_banner_url
                       ? {

@@ -186,7 +186,7 @@ function Content() {
       {/* Hero card */}
       <section className="glass-card mb-6 overflow-hidden rounded-4xl p-6 shadow-[var(--shadow-float)]">
         <div className="flex flex-wrap items-start gap-5">
-          <div className="grid h-20 w-20 flex-shrink-0 place-items-center overflow-hidden rounded-3xl bg-gradient-to-br from-primary/25 via-leaf/20 to-gold/25 text-2xl font-bold text-primary">
+          <div className="grid h-20 w-20 flex-shrink-0 place-items-center overflow-hidden rounded-3xl bg-gradient-to-br from-primary/25 to-primary/10 text-2xl font-bold text-primary">
             {p.avatar_url ? (
               <img src={p.avatar_url} alt={p.full_name} className="h-full w-full object-cover" />
             ) : (

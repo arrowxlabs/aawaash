@@ -5,7 +5,7 @@
 - [x] Run typecheck, production build smoke test, and focused public verification.
 - [ ] Run authenticated homepage, Flats upload/save, and database write E2E coverage after an active admin signs in to the preview.
 - [x] Apply the white and Fern green theme across public, dashboard, and admin surfaces.
-- [x] Remove member-per-team limits while keeping exactly three Team Leader slots.
+- [x] Remove member-per-team limits (50+ members supported).
 - [x] Verify large member lists, pagination, and counts after the unlimited-member update.
 - [x] Replace the homepage hero building with a transparent photoreal Savitri Enclave façade.
 - [x] Prevent project tab saves from resetting fields owned by other tabs.
@@ -19,3 +19,6 @@
 - [x] Review tower layouts for missing floors, duplicate flat numbers, and inconsistent unit counts using AI Gateway; live request and unit tests passed.
 - [x] Replace Payne's Gray with white and dark Fern green across all theme scopes and saved brand colors; public pages verified without errors.
 - [x] Apply white, dark matte plum and dark olive green theme.
+- [x] Remove the Team Leader cap everywhere: leader creation auto-assigns a fresh numbered team, no team picker (dashboard card, leaders-list dialog, form page).
+- [x] One colour per element: replaced every plum+olive mixed gradient with single-colour fades, solid dark plum buttons, plum browser chrome, and native-app tap/scroll polish.
+- [ ] Verify adding a 4th/5th Team Leader from the admin panel after an active admin signs in to the preview.

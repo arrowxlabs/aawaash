@@ -22,3 +22,7 @@
 - [x] Remove the Team Leader cap everywhere: leader creation auto-assigns a fresh numbered team, no team picker (dashboard card, leaders-list dialog, form page).
 - [x] One colour per element: replaced every plum+olive mixed gradient with single-colour fades, solid dark plum buttons, plum browser chrome, and native-app tap/scroll polish.
 - [ ] Verify adding a 4th/5th Team Leader from the admin panel after an active admin signs in to the preview.
+- [ ] Replace plum with white + Deep Ink Navy professional theme across public, dashboards, admin, and saved CMS brand colors.
+- [ ] New photoreal homepage hero building with better sizing; image bottom flush with section end.
+- [ ] Build Savitri Enclave tower inventory (floors 1-4, flats x01/x02) from floor plan, validate missing/duplicate flats, save to admin.
+- [ ] Restyle leader/member dashboards for mobile: narrower cards, bigger tap targets, swipeable floor list.

@@ -22,10 +22,10 @@
 
 
 /*
- * Aawash Design System — "Plum & Olive"
+ * Aawash Design System — "Deep Ink Navy"
  * ---------------------------------------------------------------
  * Premium enterprise real-estate theme. Clean white surfaces with a
- * dark matte plum, dark olive green accents, and soft plum-tinted neutrals.
+ * deep ink navy base, slate-navy accents, and cool neutral tints.
  * highlights. All colors use oklch. Semantic tokens only.
  * Typography: Plus Jakarta Sans (display) + Inter (body).
  */
@@ -115,12 +115,12 @@
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.25 0.022 249);
 
-  /* Primary — Dark Matte Plum (~#4A2D45); olive green lives in --leaf/--forest */
+  /* Primary — Deep Ink Navy (#1C2B3A); slate navy lives in --leaf/--forest */
   --primary: oklch(0.283 0.034 249);
   --primary-foreground: oklch(1 0 0);
   --primary-soft: oklch(0.972 0.01 249);
 
-  /* Leaf slot — Secondary Accent #5AAE7F used for gradients/glows */
+  /* Leaf slot — slate navy accent (#33475B) used for gradients/glows */
   --leaf: oklch(0.39 0.042 249);
 
   /* Gold — sparingly for premium highlights */
@@ -211,9 +211,9 @@
 }
 
 /*
- * Dashboard scope — white + matte plum + olive
+ * Dashboard scope — white + deep ink navy
  * Applied on the Leader / Member dashboard shells so every nested page
- * inherits a white/plum/olive palette without touching component code.
+ * inherits a white/navy palette without touching component code.
  */
 .theme-mono {
   --forest: oklch(0.22 0.03 249);

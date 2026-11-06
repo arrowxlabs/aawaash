@@ -53,7 +53,7 @@ import {
   ArrowUpDown,
 } from "lucide-react";
 
-import heroTowerTreesAsset from "@/assets/savitri-hero-photoreal.png.asset.json";
+import heroTowerTreesAsset from "@/assets/savitri-hero-tower.png.asset.json";
 const heroTowerTrees = heroTowerTreesAsset.url;
 const heroResidence = heroTowerTreesAsset.url;
 import savitriHero from "@/assets/savitri-hero.jpg.asset.json";
@@ -200,7 +200,7 @@ function Hero() {
   return (
     <section
       id="home"
-      className="relative overflow-hidden px-5 pt-24 pb-8 sm:px-8 sm:pt-28 lg:min-h-[92svh] lg:pb-[34vh] lg:pt-32"
+      className="relative overflow-hidden px-5 pt-24 pb-0 sm:px-8 sm:pt-28 lg:min-h-[96svh] lg:pb-[58vh] lg:pt-32"
     >
       {/* Layer 1-2 — atmospheric wash */}
       <div className="pointer-events-none absolute inset-0 -z-10">
@@ -278,37 +278,32 @@ function Hero() {
           </span>
         </h1>
         {/* Mobile / tablet: transparent cutout render, no card frame, blends with page */}
-        <div className="mt-4 lg:hidden">
-          <div className="relative mx-auto aspect-square w-[min(92vw,26rem)] sm:w-[min(78vw,30rem)] md:w-[min(65vw,34rem)]">
-            {/* Soft ground bloom to seat the building */}
-            <div
-              aria-hidden
-              className="pointer-events-none absolute inset-x-10 bottom-2 h-10 rounded-[50%] bg-[radial-gradient(50%_60%_at_50%_50%,color-mix(in_oklab,var(--primary)_28%,transparent),transparent_75%)] blur-2xl"
-            />
-            {/* Subtle halo behind subject */}
-            <div
-              aria-hidden
-              className="pointer-events-none absolute inset-x-6 top-6 bottom-8 rounded-[40%] bg-[radial-gradient(55%_60%_at_50%_45%,color-mix(in_oklab,var(--leaf)_18%,transparent),transparent_70%)] blur-3xl"
-            />
-            <img
-              src={heroBuilding}
-              alt="Photorealistic Savitri Enclave residence"
-              width={1024}
-              height={1024}
-              loading="eager"
-              decoding="async"
-              fetchPriority="high"
-              sizes="(min-width: 768px) 34rem, (min-width: 640px) 30rem, 92vw"
-              className="relative h-full w-full select-none object-contain object-center drop-shadow-[0_30px_40px_color-mix(in_oklab,var(--primary)_22%,transparent)] motion-safe:animate-[float_9s_ease-in-out_infinite]"
-            />
-          </div>
-          <div className="mt-5 flex justify-center">
+        <div className="mt-5 lg:hidden">
+          <div className="flex justify-center">
             <a
               href="#projects"
               className="inline-flex h-12 items-center justify-center gap-2 rounded-2xl bg-primary px-6 text-sm font-semibold text-primary-foreground shadow-[var(--shadow-glow)] transition-transform active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2"
             >
               Explore Projects <ArrowRight size={15} />
             </a>
+          </div>
+          {/* Building sits flush on the bottom edge of the section */}
+          <div className="relative mx-auto mt-6 w-[min(84vw,24rem)] sm:w-[min(66vw,28rem)] md:w-[min(56vw,32rem)]">
+            <div
+              aria-hidden
+              className="pointer-events-none absolute inset-x-4 top-10 bottom-0 rounded-t-[45%] bg-[radial-gradient(60%_60%_at_50%_60%,color-mix(in_oklab,var(--primary)_14%,transparent),transparent_72%)] blur-2xl"
+            />
+            <img
+              src={heroBuilding}
+              alt="Savitri Enclave residential tower"
+              width={1024}
+              height={1536}
+              loading="eager"
+              decoding="async"
+              fetchPriority="high"
+              sizes="(min-width: 768px) 32rem, (min-width: 640px) 28rem, 84vw"
+              className="relative -mb-px block h-auto w-full select-none object-contain object-bottom"
+            />
           </div>
         </div>
 
@@ -404,8 +399,7 @@ function Hero() {
       {/* Building emerging from the bottom + floating stat chips */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-x-0 bottom-0 z-0 hidden h-[54vh] lg:block"
-        style={{ transform: `translateY(${scrollY * 0.08}px)` }}
+        className="pointer-events-none absolute inset-x-0 bottom-0 z-0 hidden h-[56vh] lg:block"
       >
         {/* Soft bloom behind building */}
         <div className="absolute inset-x-0 bottom-0 mx-auto h-full max-w-6xl">
@@ -414,16 +408,16 @@ function Hero() {
 
         {/* The building itself — transparent cutout, no frame */}
         <div className="absolute inset-x-0 bottom-0 mx-auto flex h-full max-w-5xl items-end justify-center px-4">
-          <div className="relative w-[min(46vw,34rem)] xl:w-[min(40vw,38rem)]">
+          <div className="relative h-full">
             <img
               src={heroBuilding}
-              alt="Photorealistic Savitri Enclave residence"
+              alt="Savitri Enclave residential tower"
               width={1024}
-              height={1024}
+              height={1536}
               loading="lazy"
               decoding="async"
-              sizes="(min-width: 1280px) 38rem, 46vw"
-              className="mx-auto h-auto w-full select-none object-contain object-center drop-shadow-[0_40px_60px_color-mix(in_oklab,var(--primary)_24%,transparent)] animate-[float_10s_ease-in-out_infinite]"
+              sizes="40vw"
+              className="mx-auto block h-full w-auto select-none object-contain object-bottom"
             />
           </div>
         </div>

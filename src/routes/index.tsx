@@ -296,8 +296,8 @@ function Hero() {
             <img
               src={heroBuilding}
               alt="Savitri Enclave residential tower"
-              width={1024}
-              height={1536}
+              width={798}
+              height={1300}
               loading="eager"
               decoding="async"
               fetchPriority="high"
@@ -412,8 +412,8 @@ function Hero() {
             <img
               src={heroBuilding}
               alt="Savitri Enclave residential tower"
-              width={1024}
-              height={1536}
+              width={798}
+              height={1300}
               loading="lazy"
               decoding="async"
               sizes="40vw"
